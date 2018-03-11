@@ -25677,3 +25677,23 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-home ion-content {
+  background-image: url("../assets/imgs/allsports.jpeg");
+  background-size: cover;
+  background-position-x: 50%;
+  color: #fff;
+}
+
+page-home ion-header {
+  background-color: transparent;
+}
+
+page-home .content-md {
+  color: #fff;
+}
+
+page-home .bar-buttons,
+page-home .toolbar-title {
+  color: #fff;
+}
