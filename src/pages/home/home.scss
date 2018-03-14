@@ -1,8 +1,10 @@
 page-home {
 ion-content {
-    background-image: url('../assets/imgs/allsports.jpeg');
-    background-size: cover;
-    background-position-x: 50%;
+    background-image: url('../assets/imgs/all-sports.png');
+    background-size: initial;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    
     color: #fff;
 }
 ion-header {
@@ -10,6 +12,7 @@ ion-header {
 }
 .content-md {
 	color: #fff;
+	background-color: #aaa;
 }
   .bar-buttons,
   .toolbar-title {

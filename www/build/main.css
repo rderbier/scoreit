@@ -25679,9 +25679,10 @@ ion-navbar.toolbar {
 }
 
 page-home ion-content {
-  background-image: url("../assets/imgs/allsports.jpeg");
-  background-size: cover;
-  background-position-x: 50%;
+  background-image: url("../assets/imgs/all-sports.png");
+  background-size: initial;
+  background-repeat: no-repeat;
+  background-position: bottom;
   color: #fff;
 }
 
@@ -25691,6 +25692,7 @@ page-home ion-header {
 
 page-home .content-md {
   color: #fff;
+  background-color: #aaa;
 }
 
 page-home .bar-buttons,
