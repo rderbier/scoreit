@@ -13,6 +13,15 @@ import { EventPage } from '../pages/event/event';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BackendProvider } from '../providers/backend/backend';
+import { Camera } from '@ionic-native/camera';
+import { QRScanner } from '@ionic-native/qr-scanner';
+class CameraMock extends Camera {
+  getPicture(options) {
+    return new Promise((resolve, reject) => {
+      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+    })
+  }
+}
 
 @NgModule({
   declarations: [
@@ -41,6 +50,8 @@ import { BackendProvider } from '../providers/backend/backend';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: Camera, useClass: CameraMock },
+    QRScanner,
     BackendProvider
   ]
 })
