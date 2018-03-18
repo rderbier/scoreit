@@ -50,7 +50,7 @@ class CameraMock extends Camera {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    { provide: Camera, useClass: CameraMock },
+    Camera,
     QRScanner,
     BackendProvider
   ]
