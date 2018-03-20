@@ -3,6 +3,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { EventPage } from '../event/event';
 import { BackendProvider } from '../../providers/backend/backend';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-home',
@@ -12,8 +13,9 @@ export class HomePage {
    public events = [];
    eventCode: string;
    event: any;
+   base64Image : any;
 
-  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: QRScanner) {
+  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: QRScanner, private camera: Camera) {
 
   this.event = {};
 
@@ -44,6 +46,22 @@ export class HomePage {
       console.log(data);
       this.navCtrl.push(EventPage);
       this.event = data;
+    });
+  }
+  takePicture(){
+       window.document.querySelector('ion-app').classList.add('transparent-body');
+       window.document.querySelector('ion-content').classList.add('transparent-body');
+    this.camera.getPicture({
+        destinationType: this.camera.DestinationType.DATA_URL,
+        targetWidth: 1000,
+        targetHeight: 1000
+    }).then((imageData) => {
+      // imageData is a base64 encoded string
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+       window.document.querySelector('ion-app').classList.remove('transparent-body');
+       window.document.querySelector('ion-content').classList.remove('transparent-body');
+    }, (err) => {
+        console.log(err);
     });
   }
 
