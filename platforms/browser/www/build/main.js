@@ -270,11 +270,16 @@ var HomePage = (function () {
                 // start scanning
                 var scanSub_1 = _this.qrScanner.scan().subscribe(function (text) {
                     console.log('Scanned something', text);
+                    _this.eventCode = text;
                     _this.qrScanner.hide(); // hide camera preview
                     scanSub_1.unsubscribe(); // stop scanning
+                    window.document.querySelector('ion-app').classList.remove('transparent-body');
+                    window.document.querySelector('ion-content').classList.remove('transparent-body');
                 });
                 // show camera preview
                 _this.qrScanner.show();
+                window.document.querySelector('ion-app').classList.add('transparent-body');
+                window.document.querySelector('ion-content').classList.add('transparent-body');
                 // wait for user to scan something, then the observable callback will be called
             }
             else if (status.denied) {
@@ -386,16 +391,6 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_backend_backend__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_qr_scanner__ = __webpack_require__(204);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -417,18 +412,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CameraMock = (function (_super) {
-    __extends(CameraMock, _super);
-    function CameraMock() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CameraMock.prototype.getPicture = function (options) {
-        return new Promise(function (resolve, reject) {
-            resolve("BASE_64_ENCODED_DATA_GOES_HERE");
-        });
-    };
-    return CameraMock;
-}(__WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__["a" /* Camera */]));
+/*
+class CameraMock extends Camera {
+  getPicture(options) {
+    return new Promise((resolve, reject) => {
+      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+    })
+  }
+}
+*/
 var AppModule = (function () {
     function AppModule() {
     }

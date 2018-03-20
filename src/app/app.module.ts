@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BackendProvider } from '../providers/backend/backend';
 import { Camera } from '@ionic-native/camera';
 import { QRScanner } from '@ionic-native/qr-scanner';
+/*
 class CameraMock extends Camera {
   getPicture(options) {
     return new Promise((resolve, reject) => {
@@ -22,6 +23,7 @@ class CameraMock extends Camera {
     })
   }
 }
+*/
 
 @NgModule({
   declarations: [

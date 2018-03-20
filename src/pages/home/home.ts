@@ -57,13 +57,18 @@ this.qrScanner.prepare()
        // start scanning
        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
          console.log('Scanned something', text);
+         this.eventCode=text;
 
          this.qrScanner.hide(); // hide camera preview
          scanSub.unsubscribe(); // stop scanning
+         window.document.querySelector('ion-app').classList.remove('transparent-body');
+         window.document.querySelector('ion-content').classList.remove('transparent-body');
        });
 
        // show camera preview
        this.qrScanner.show();
+       window.document.querySelector('ion-app').classList.add('transparent-body');
+       window.document.querySelector('ion-content').classList.add('transparent-body');
 
        // wait for user to scan something, then the observable callback will be called
 

@@ -25678,6 +25678,11 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.transparent-body {
+  background: none transparent !important;
+  opacity: 0 !important;
+}
+
 page-home ion-content {
   background-image: url("../assets/imgs/all-sports.png");
   background-size: initial;
