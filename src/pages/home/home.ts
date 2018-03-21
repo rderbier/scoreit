@@ -3,7 +3,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { EventPage } from '../event/event';
 import { BackendProvider } from '../../providers/backend/backend';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+
 
 @Component({
   selector: 'page-home',
@@ -13,11 +13,11 @@ export class HomePage {
    public events = [];
    eventCode: string;
    event: any;
-   base64Image : any;
+   
    options :BarcodeScannerOptions;
    barcodeData: any;
 
-  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: BarcodeScanner, private camera: Camera) {
+  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: BarcodeScanner) {
 
   this.event = {};
 
@@ -50,22 +50,7 @@ export class HomePage {
       this.event = data;
     });
   }
-  takePicture(){
-       window.document.querySelector('ion-app').classList.add('transparent-body');
-       window.document.querySelector('ion-content').classList.add('transparent-body');
-    this.camera.getPicture({
-        destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-       window.document.querySelector('ion-app').classList.remove('transparent-body');
-       window.document.querySelector('ion-content').classList.remove('transparent-body');
-    }, (err) => {
-        console.log(err);
-    });
-  }
+
 
 qrscanRequest() {
 this.options = {
@@ -81,11 +66,6 @@ this.options = {
           disableAnimations : true, // iOS
           disableSuccessBeep: false // iOS and Android
     }
-//this.qrScanner.prepare()
-//  .then((status: QRScannerStatus) => {
-//     if (status.authorized) {
-       // camera permission was granted
-
 
        // start scanning
        let scanSub = this.qrScanner.scan().then((barcodeData) => {
@@ -96,28 +76,7 @@ this.options = {
         console.log("Error occured : " + err);
     });  
 
-   /*
-       subscribe((text: string) => {
-         console.log('Scanned something', text);
-         this.eventCode=text;
 
-         this.qrScanner.hide(); // hide camera preview
-         scanSub.unsubscribe(); // stop scanning
-         window.document.querySelector('ion-app').classList.remove('transparent-body');
-         window.document.querySelector('ion-content').classList.remove('transparent-body');
-       });
-
-       // show camera preview
-       this.qrScanner.show();
-       window.document.querySelector('ion-app').classList.add('transparent-body');
-       window.document.querySelector('ion-content').classList.add('transparent-body');
-
-       // wait for user to scan something, then the observable callback will be called
-
-     } 
-     */
- // })
- // .catch((e: any) => console.log('Error is', e));
 
   }
  
