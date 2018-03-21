@@ -213,7 +213,7 @@ var ContactPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_event__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_qr_scanner__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(205);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -283,41 +283,57 @@ var HomePage = (function () {
     };
     HomePage.prototype.qrscanRequest = function () {
         var _this = this;
-        this.qrScanner.prepare()
-            .then(function (status) {
-            if (status.authorized) {
-                // camera permission was granted
-                // start scanning
-                var scanSub_1 = _this.qrScanner.scan().subscribe(function (text) {
-                    console.log('Scanned something', text);
-                    _this.eventCode = text;
-                    _this.qrScanner.hide(); // hide camera preview
-                    scanSub_1.unsubscribe(); // stop scanning
-                    window.document.querySelector('ion-app').classList.remove('transparent-body');
-                    window.document.querySelector('ion-content').classList.remove('transparent-body');
-                });
-                // show camera preview
-                _this.qrScanner.show();
-                window.document.querySelector('ion-app').classList.add('transparent-body');
-                window.document.querySelector('ion-content').classList.add('transparent-body');
-                // wait for user to scan something, then the observable callback will be called
-            }
-            else if (status.denied) {
-                // camera permission was permanently denied
-                // you must use QRScanner.openSettings() method to guide the user to the settings page
-                // then they can grant the permission from there
-            }
-            else {
-                // permission was denied, but not permanently. You can ask for permission again at a later time.
-            }
-        })
-            .catch(function (e) { return console.log('Error is', e); });
+        this.options = {
+            preferFrontCamera: true,
+            showFlipCameraButton: true,
+            showTorchButton: true,
+            torchOn: true,
+            prompt: "Place a barcode inside the scan area",
+            resultDisplayDuration: 500,
+            formats: "QR_CODE,PDF_417",
+            orientation: "landscape",
+            disableAnimations: true,
+            disableSuccessBeep: false // iOS and Android
+        };
+        //this.qrScanner.prepare()
+        //  .then((status: QRScannerStatus) => {
+        //     if (status.authorized) {
+        // camera permission was granted
+        // start scanning
+        var scanSub = this.qrScanner.scan().then(function (barcodeData) {
+            console.log(barcodeData);
+            _this.eventCode = barcodeData.text;
+        }, function (err) {
+            console.log("Error occured : " + err);
+        });
+        /*
+            subscribe((text: string) => {
+              console.log('Scanned something', text);
+              this.eventCode=text;
+     
+              this.qrScanner.hide(); // hide camera preview
+              scanSub.unsubscribe(); // stop scanning
+              window.document.querySelector('ion-app').classList.remove('transparent-body');
+              window.document.querySelector('ion-content').classList.remove('transparent-body');
+            });
+     
+            // show camera preview
+            this.qrScanner.show();
+            window.document.querySelector('ion-app').classList.add('transparent-body');
+            window.document.querySelector('ion-content').classList.add('transparent-body');
+     
+            // wait for user to scan something, then the observable callback will be called
+     
+          }
+          */
+        // })
+        // .catch((e: any) => console.log('Error is', e));
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar transparent>\n    <ion-title>\n      Tournament Scoring\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addEvent()"><ion-icon name="add-circle"></ion-icon></button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h2>Enter your event code</h2>\n \n  \n    <ion-item>\n      <ion-label floating></ion-label>\n      <ion-input type="text" [(ngModel)]="eventCode"></ion-input>\n    </ion-item>\n<button *ngIf="eventCode!=null" full ion-button color="primary" (click)="openEvent()">Open Event</button>\n<button full ion-button color="secondary" (click)="qrscanRequest()">QR Scan</button>\n  \n  <button (click)="takePicture()">Take a Picture</button>\n\n      Latest Picture:\n      <img [src]="base64Image" *ngIf="base64Image" />\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__["a" /* BackendProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_qr_scanner__["a" /* QRScanner */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__["a" /* BackendProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__["a" /* BarcodeScanner */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */]])
     ], HomePage);
     return HomePage;
 }());
@@ -410,7 +426,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_backend_backend__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_qr_scanner__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_barcode_scanner__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -431,6 +447,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//import { QRScanner } from '@ionic-native/qr-scanner';
 
 /*
 class CameraMock extends Camera {
@@ -475,7 +492,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_14__ionic_native_qr_scanner__["a" /* QRScanner */],
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
                 __WEBPACK_IMPORTED_MODULE_12__providers_backend_backend__["a" /* BackendProvider */]
             ]
         })

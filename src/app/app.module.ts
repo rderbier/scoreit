@@ -14,7 +14,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BackendProvider } from '../providers/backend/backend';
 import { Camera } from '@ionic-native/camera';
-import { QRScanner } from '@ionic-native/qr-scanner';
+//import { QRScanner } from '@ionic-native/qr-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /*
 class CameraMock extends Camera {
   getPicture(options) {
@@ -53,7 +54,7 @@ class CameraMock extends Camera {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    QRScanner,
+    BarcodeScanner,
     BackendProvider
   ]
 })
