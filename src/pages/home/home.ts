@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
-import { EventPage } from '../event/event';
+import { EventTabsPage } from '../event-tabs/event-tabs';
 import { BackendProvider } from '../../providers/backend/backend';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { App } from 'ionic-angular';
 
 
 @Component({
@@ -17,37 +18,24 @@ export class HomePage {
    options :BarcodeScannerOptions;
    barcodeData: any;
 
-  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: BarcodeScanner) {
+  constructor( private app: App, public modalCtrl: ModalController,public navCtrl: NavController, public backend: BackendProvider, private qrScanner: BarcodeScanner) {
 
   this.event = {};
 
   }
 
-  addEvent(){
- 
-    //let addModal = this.modalCtrl.create(EventPage);
-    this.navCtrl.push(EventPage);
- 
-    /*
-    addModal.onDidDismiss((item) => {
- 
-          if(item){
-            this.saveEvent(item);
-          }
- 
-    });
- 
-    addModal.present();
-    */
- 
-  }
+
 
   openEvent() {
   console.log("open event ");
      this.backend.getEvent(this.eventCode).then((data) => {
       console.log(data);
-      this.navCtrl.push(EventPage);
       this.event = data;
+      // change the main root to event
+      var ctrl = this.app.getRootNavs()[0];
+      ctrl.setRoot(EventTabsPage);
+      
+      
     });
   }
 

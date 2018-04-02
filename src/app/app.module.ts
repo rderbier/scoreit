@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { EventPage } from '../pages/event/event';
+import { EventTabsPage } from '../pages/event-tabs/event-tabs';
 import { SandboxPage } from '../pages/sandbox/sandbox';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -35,7 +36,8 @@ class CameraMock extends Camera {
     HomePage,
     TabsPage,
     EventPage,
-    SandboxPage
+    SandboxPage,
+    EventTabsPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ class CameraMock extends Camera {
     HomePage,
     TabsPage,
     EventPage,
-    SandboxPage
+    SandboxPage,
+    EventTabsPage
   ],
   providers: [
     StatusBar,

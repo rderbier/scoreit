@@ -1,7 +1,7 @@
 <ion-header>
-	<ion-navbar color="secondary">
+	<ion-navbar color="lightdark">
     <ion-title>
-      Event Info
+      {{event.title}}
     </ion-title>
 </ion-navbar>
   <!--ion-toolbar color="secondary">
@@ -14,20 +14,34 @@
     </ion-toolbar-->
 </ion-header>
  
-<ion-content>
-  <ion-list>
- 
+<ion-content >
+
+<ion-list no-lines>
+  <ion-list-header>
+    Playing today
+  </ion-list-header>
+
+  <ion-item *ngFor="let m of event.matchToday">
+  <ion-card>
     <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="event.title"></ion-input>
-    </ion-item>
- 
+    <ion-icon src="data:image/png;base64," item-start large></ion-icon><h2>{{m.teamA}}</h2>
+    <div item-end>
+    <ion-badge >{{m.scoreA}}</ion-badge>
+    <ion-icon name="heart"></ion-icon>
+    </div>
+     </ion-item>
     <ion-item>
-      <ion-label floating>Date</ion-label>
-      <ion-input type="date" [(ngModel)]="event.date"></ion-input>
-    </ion-item>
- 
-  </ion-list>
+    <ion-icon name="football" item-start large></ion-icon><h2>{{m.teamB}}</h2> 
+    <div item-end>
+    <ion-badge >{{m.scoreB}}</ion-badge>
+  </div>
+
+  </ion-item>
+    
+    
+  </ion-card>
+</ion-item>
+</ion-list>
  
   
  

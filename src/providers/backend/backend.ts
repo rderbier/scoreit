@@ -28,6 +28,7 @@ export class BackendProvider {
       return Promise.resolve(this.event);
     }
  
+    /*
     return new Promise(resolve => {
  
       this.http.get('http://scorepro.herokuapp.com/api/event/'+eventCode)
@@ -36,7 +37,17 @@ export class BackendProvider {
           resolve(this.event);
         });
     });
- 
+    */
+
+    return new Promise(resolve => {
+       this.event = { title : "test event",
+       matchToday: [
+         {teamA: "the king", teamB:"SF Monkeys", scoreA:"35", scoreB:"20", winner:"teamA"},
+         {teamA: "Red Bull", teamB:"Sapporo", scoreA:"20", scoreB:"22", winner:"teamB"}
+       ]};
+
+       resolve(this.event)
+    });
   }
 
 }

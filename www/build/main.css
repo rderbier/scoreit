@@ -27977,6 +27977,10 @@ ion-navbar.toolbar {
   opacity: 0 !important;
 }
 
+page-event ion-content .card h2 {
+  color: white;
+}
+
 page-home ion-content {
   background-image: url("../assets/imgs/all-sports.png");
   background-size: initial;
