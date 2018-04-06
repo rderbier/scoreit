@@ -3,7 +3,7 @@
     <ion-title>
       {{event.title}}
     </ion-title>
-</ion-navbar>
+  </ion-navbar>
   <!--ion-toolbar color="secondary">
     <ion-title>
       New Event
@@ -12,37 +12,54 @@
         <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
       </ion-buttons>
     </ion-toolbar-->
-</ion-header>
- 
-<ion-content >
+  </ion-header>
 
-<ion-list no-lines>
-  <ion-list-header>
-    Playing today
-  </ion-list-header>
+  <ion-content >
 
-  <ion-item *ngFor="let m of event.matchToday">
-  <ion-card>
-    <ion-item>
-    <ion-icon src="data:image/png;base64," item-start large></ion-icon><h2>{{m.teamA}}</h2>
-    <div item-end>
-    <ion-badge >{{m.scoreA}}</ion-badge>
-    <ion-icon name="heart"></ion-icon>
-    </div>
-     </ion-item>
-    <ion-item>
-    <ion-icon name="football" item-start large></ion-icon><h2>{{m.teamB}}</h2> 
-    <div item-end>
-    <ion-badge >{{m.scoreB}}</ion-badge>
-  </div>
+    <ion-list no-lines  ngInit="clearDate()">
 
-  </ion-item>
-    
-    
-  </ion-card>
-</ion-item>
-</ion-list>
- 
-  
- 
-</ion-content>
+      <div *ngFor="let m of event.games">
+        <ion-list-header *ngIf="isNewDate(m.date)">
+          {{m.date.toDateString()}}
+        </ion-list-header>
+        <ion-item class="matches__list-item" (click)="scrollTo()" >
+
+          <a  class="matches__item matches__link" >
+
+            <!--span class="matches__item-col matches__label">CHA</span-->
+
+            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{m.teams[0].name}}</span>
+
+            <span class="matches__item-col matches__status ">
+
+              <span class="matches__teamscores" *ngIf="m.isFinal==true" >
+
+                <span class="matches__teamscores-side">{{m.teams[0].score}}</span>
+
+                <span class="matches__teamscores-side">{{m.teams[1].score}}</span>
+
+              </span>
+              <span class="matches__time" *ngIf="m.isFinal!=true" >
+
+                {{m.date.toTimeString().substr(0,5)}}
+
+              </span>
+
+
+
+            </span>
+
+            <span class="matches__item-col matches__participant matches__participant--side2">{{m.teams[1].name}}</span>
+
+            <!--span class="matches__item-col matches__info">FT</span-->
+
+
+          </a>
+        </ion-item>
+      </div>
+
+    </ion-list>
+
+
+
+  </ion-content>

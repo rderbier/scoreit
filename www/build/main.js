@@ -6,7 +6,7 @@ webpackJsonp([1],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,11 +22,14 @@ var AboutPage = (function () {
     function AboutPage(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    AboutPage.prototype.swipe = function (event) {
+        console.log("Swipe " + event.direction);
+    };
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="bracket" (swipe)="swipe($event)">\n	<ul class="round round-1">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>79</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">NC A&T <span>48</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Colo St <span>84</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Missouri <span>72</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Oklahoma St <span>55</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Oregon <span>68</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Saint Louis <span>64</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">New Mexico St <span>44</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Memphis <span>54</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">St Mary\'s <span>52</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Mich St <span>65</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Valparaiso <span>54</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Creighton <span>67</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Cincinnati <span>63</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Duke <span>73</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Albany <span>61</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	<ul class="round round-2">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>82</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Colo St <span>56</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Oregon <span>74</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Saint Louis <span>57</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Memphis <span>48</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Mich St <span>70</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Creighton <span>50</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Duke <span>66</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
     ], AboutPage);
     return AboutPage;
 }());
@@ -41,7 +44,7 @@ var AboutPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,7 +64,7 @@ var ContactPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-contact',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/contact/contact.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
     ], ContactPage);
     return ContactPage;
 }());
@@ -123,10 +126,43 @@ var BackendProvider = (function () {
         */
         return new Promise(function (resolve) {
             _this.event = { title: "test event",
-                matchToday: [
-                    { teamA: "the king", teamB: "SF Monkeys", scoreA: "35", scoreB: "20", winner: "teamA" },
-                    { teamA: "Red Bull", teamB: "Sapporo", scoreA: "20", scoreB: "22", winner: "teamB" }
+                isOver: false,
+                games: [
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        teams: [
+                            { name: "the king", score: "35", isWinner: true },
+                            { name: "SF Monkeys", score: "12" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-07T13:00:00.000Z",
+                        teams: [
+                            { name: "sapporo" },
+                            { name: "stella" }
+                        ]
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        teams: [
+                            { name: "team a", score: "2" },
+                            { name: "team b", score: "2" }
+                        ],
+                        isFinal: true,
+                    },
                 ] };
+            // set real date objects
+            for (var _i = 0, _a = _this.event.games; _i < _a.length; _i++) {
+                var g = _a[_i];
+                g.date = new Date(g.date);
+            }
+            // sort games by date
+            _this.event.games.sort(function (a, b) {
+                var d1 = a.date;
+                var d2 = b.date;
+                return d1 < d2 ? -1 : d1 > d2 ? 1 : 0;
+            });
             resolve(_this.event);
         });
     };
@@ -147,7 +183,7 @@ var BackendProvider = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SandboxPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -197,7 +233,7 @@ var SandboxPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-sandbox',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/sandbox/sandbox.html"*/'<!--\n  Generated template for the SandboxPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>sandbox</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<ion-content padding>\n  \n  \n  <button ion-button color="primary" (click)="takePicture()">Take a Picture</button>\n  <br>\n      Latest Picture:\n      <img [src]="base64Image" *ngIf="base64Image" />\n</ion-content>\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/sandbox/sandbox.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]])
     ], SandboxPage);
     return SandboxPage;
 }());
@@ -297,7 +333,7 @@ var TabsPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_tabs_event_tabs__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__ = __webpack_require__(207);
@@ -363,7 +399,7 @@ var HomePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="lightdark">\n    <ion-title>\n      Tournament Scoring\n    </ion-title>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <button  ion-button color="primary" (click)="qrscanRequest()">Scan the QR Code of the event</button>\n\n  <h2>Or enter your event code</h2>\n \n  \n    <ion-item>\n      \n      <ion-input type="text" [(ngModel)]="eventCode"></ion-input>\n    </ion-item>\n<button  *ngIf="eventCode" ion-button color="primary" (click)="openEvent()">Open Event</button>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__["a" /* BackendProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__["a" /* BackendProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]])
     ], HomePage);
     return HomePage;
 }());
@@ -418,7 +454,7 @@ var EventTabsPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -429,6 +465,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -450,11 +487,33 @@ var EventPage = (function () {
         console.log('ionViewDidLoad AddEventPage');
         this.event = this.backend.getCurrentEvent();
     };
+    EventPage.prototype.ionViewDidEnter = function () {
+        console.log('ionViewDidEnter ');
+        this.content.scrollTo(0, 500, 200);
+    };
+    EventPage.prototype.scrollTo = function () {
+        this.content.scrollTo(0, 500, 200);
+    };
+    EventPage.prototype.clearDate = function () {
+        this.current = undefined;
+    };
+    EventPage.prototype.isNewDate = function (d) {
+        var result = true;
+        if ((this.current != undefined) && (d != undefined)) {
+            result = (d.toDateString() != this.current.toDateString());
+        }
+        this.current = d;
+        return (result);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */])
+    ], EventPage.prototype, "content", void 0);
     EventPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-title>\n      {{event.title}}\n    </ion-title>\n</ion-navbar>\n  <!--ion-toolbar color="secondary">\n    <ion-title>\n      New Event\n    </ion-title>\n      <ion-buttons end>\n        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>\n      </ion-buttons>\n    </ion-toolbar-->\n</ion-header>\n \n<ion-content >\n\n<ion-list no-lines>\n  <ion-list-header>\n    Playing today\n  </ion-list-header>\n\n  <ion-item *ngFor="let m of event.matchToday">\n  <ion-card>\n    <ion-item>\n    <ion-icon src="data:image/png;base64," item-start large></ion-icon><h2>{{m.teamA}}</h2>\n    <div item-end>\n    <ion-badge >{{m.scoreA}}</ion-badge>\n    <ion-icon name="heart"></ion-icon>\n    </div>\n     </ion-item>\n    <ion-item>\n    <ion-icon name="football" item-start large></ion-icon><h2>{{m.teamB}}</h2> \n    <div item-end>\n    <ion-badge >{{m.scoreB}}</ion-badge>\n  </div>\n\n  </ion-item>\n    \n    \n  </ion-card>\n</ion-item>\n</ion-list>\n \n  \n \n</ion-content>'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
+            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-title>\n      {{event.title}}\n    </ion-title>\n  </ion-navbar>\n  <!--ion-toolbar color="secondary">\n    <ion-title>\n      New Event\n    </ion-title>\n      <ion-buttons end>\n        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>\n      </ion-buttons>\n    </ion-toolbar-->\n  </ion-header>\n\n  <ion-content >\n\n    <ion-list no-lines  ngInit="clearDate()">\n\n      <div *ngFor="let m of event.games">\n        <ion-list-header *ngIf="isNewDate(m.date)">\n          {{m.date.toDateString()}}\n        </ion-list-header>\n        <ion-item class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{m.teams[1].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n        </ion-item>\n      </div>\n\n    </ion-list>\n\n\n\n  </ion-content>'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]])
     ], EventPage);
     return EventPage;
 }());
@@ -485,7 +544,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(102);
@@ -550,13 +609,13 @@ var AppModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/sandbox/sandbox.module#SandboxPageModule', name: 'SandboxPage', segment: 'sandbox', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicApp */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_5__pages_about_about__["a" /* AboutPage */],
@@ -570,7 +629,7 @@ var AppModule = (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicErrorHandler */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_15__ionic_native_camera__["a" /* Camera */],
                 __WEBPACK_IMPORTED_MODULE_16__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
                 __WEBPACK_IMPORTED_MODULE_14__providers_backend_backend__["a" /* BackendProvider */]
@@ -590,7 +649,7 @@ var AppModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(203);
@@ -621,7 +680,7 @@ var MyApp = (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/app/app.html"*/'<ion-nav id="main" [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
 }());

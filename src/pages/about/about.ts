@@ -11,4 +11,8 @@ export class AboutPage {
 
   }
 
+  swipe(event) {
+  console.log("Swipe "+event.direction)
+}
+
 }

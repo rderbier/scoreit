@@ -41,10 +41,48 @@ export class BackendProvider {
 
     return new Promise(resolve => {
        this.event = { title : "test event",
-       matchToday: [
-         {teamA: "the king", teamB:"SF Monkeys", scoreA:"35", scoreB:"20", winner:"teamA"},
-         {teamA: "Red Bull", teamB:"Sapporo", scoreA:"20", scoreB:"22", winner:"teamB"}
+       isOver : false,
+       games: [
+         {
+         date: "2018-04-05T13:00:00.000Z",
+         teams : [
+          { name: "the king", score:"35", isWinner: true},
+          { name: "SF Monkeys", score:"12" }
+          ],
+   
+         isFinal: true,
+         },
+         
+         {
+         date: "2018-04-07T13:00:00.000Z",
+         teams : [
+          { name: "sapporo"},
+          { name: "stella"}
+          ]
+         },
+         {
+         date: "2018-04-05T13:00:00.000Z",
+         teams : [
+          { name: "team a", score:"2"},
+          { name: "team b", score:"2" }
+          ],
+   
+         isFinal: true,
+         },
        ]};
+
+       // set real date objects
+       for (let g of this.event.games) {
+          g.date = new Date(g.date);
+       }
+       // sort games by date
+       this.event.games.sort(function(a, b) {
+    let d1 = a.date;
+    let d2 = b.date;
+    return d1<d2 ? -1 : d1>d2 ? 1 : 0;
+});
+
+
 
        resolve(this.event)
     });
