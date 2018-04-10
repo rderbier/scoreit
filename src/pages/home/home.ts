@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { EventTabsPage } from '../event-tabs/event-tabs';
+import { EventPage } from '../event/event';
 import { BackendProvider } from '../../providers/backend/backend';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { App } from 'ionic-angular';
@@ -33,7 +34,7 @@ export class HomePage {
       this.event = data;
       // change the main root to event
       var ctrl = this.app.getRootNavs()[0];
-      ctrl.setRoot(EventTabsPage);
+      ctrl.setRoot(EventPage);
       
       
     });

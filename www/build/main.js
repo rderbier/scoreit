@@ -4,9 +4,12 @@ webpackJsonp([1],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sandbox_sandbox__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +21,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var AboutPage = (function () {
-    function AboutPage(navCtrl) {
-        this.navCtrl = navCtrl;
+
+
+
+var TabsPage = (function () {
+    function TabsPage() {
+        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__about_about__["a" /* AboutPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
+        this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__sandbox_sandbox__["a" /* SandboxPage */];
     }
-    AboutPage.prototype.swipe = function (event) {
-        console.log("Swipe " + event.direction);
-    };
-    AboutPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="bracket" (swipe)="swipe($event)">\n	<ul class="round round-1">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>79</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">NC A&T <span>48</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Colo St <span>84</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Missouri <span>72</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Oklahoma St <span>55</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Oregon <span>68</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Saint Louis <span>64</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">New Mexico St <span>44</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Memphis <span>54</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">St Mary\'s <span>52</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Mich St <span>65</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Valparaiso <span>54</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Creighton <span>67</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Cincinnati <span>63</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Duke <span>73</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Albany <span>61</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	<ul class="round round-2">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>82</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Colo St <span>56</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Oregon <span>74</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Saint Louis <span>57</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Memphis <span>48</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Mich St <span>70</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Creighton <span>50</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Duke <span>66</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/
+    TabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/tabs/tabs.html"*/'<ion-tabs color="lightdark">\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Test" tabIcon="plus"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/tabs/tabs.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
-    ], AboutPage);
-    return AboutPage;
+        __metadata("design:paramtypes", [])
+    ], TabsPage);
+    return TabsPage;
 }());
 
-//# sourceMappingURL=about.js.map
+//# sourceMappingURL=tabs.js.map
 
 /***/ }),
 
@@ -44,7 +49,7 @@ var AboutPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -77,8 +82,132 @@ var ContactPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(101);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the AddEventPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var EventPage = (function () {
+    function EventPage(app, navCtrl, navParams, view, backend) {
+        this.app = app;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.view = view;
+        this.backend = backend;
+        this.event = {};
+        this.groupIds = [];
+        this.groups = [];
+        this.event = this.backend.getCurrentEvent();
+        for (var _i = 0, _a = this.event.groups; _i < _a.length; _i++) {
+            var g = _a[_i];
+            this.groups[g.id] = g;
+            this.groupIds.push(g.id);
+        }
+        this.groupId = this.event.games[0].groupId;
+        this.buildBracket(this.groupId);
+        // this.group = this.groups[this.groupId].name;
+        this.current = undefined;
+    }
+    EventPage.prototype.buildBracket = function (group) {
+        // build the round for brackets
+        this.rounds = {};
+        if (this.groups[this.groupId].type == "bracket") {
+            for (var _i = 0, _a = this.event.games; _i < _a.length; _i++) {
+                var game = _a[_i];
+                if (game.groupId == this.groupId) {
+                    if (this.rounds[game.round] == undefined) {
+                        this.rounds[game.round] = [];
+                    }
+                    this.rounds[game.round].push(game);
+                }
+            }
+            // sort each round per roundIndex;
+            for (var r in this.rounds) {
+                this.rounds[r].sort(function (a, b) {
+                    return a.roundIndex < b.roundIndex ? -1 : a.roundIndex > b.roundIndex ? 1 : 0;
+                });
+            }
+        }
+    };
+    EventPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AddEventPage');
+    };
+    EventPage.prototype.ionViewDidEnter = function () {
+        console.log('ionViewDidEnter ');
+        this.content.scrollTo(0, 500, 200);
+    };
+    EventPage.prototype.scrollTo = function () {
+        this.content.scrollTo(0, 500, 200);
+    };
+    EventPage.prototype.clearDate = function () {
+        this.current = undefined;
+    };
+    EventPage.prototype.isCurrentGroup = function (m) {
+        return (m.groupId == this.groupId);
+    };
+    EventPage.prototype.isNewDate = function (d) {
+        var result = true;
+        if ((this.current != undefined) && (d != undefined)) {
+            result = (d.toDateString() != this.current.toDateString());
+        }
+        //this.current = d;
+        return (result);
+    };
+    EventPage.prototype.nextGroup = function () {
+        var index = this.groupIds.indexOf(this.groupId);
+        index = (index + 1) % this.groupIds.length;
+        this.groupId = this.groupIds[index];
+        this.buildBracket(this.groupId);
+        //this.group = this.groups[this.groupId].name;
+    };
+    EventPage.prototype.goHome = function () {
+        var ctrl = this.app.getRootNavs()[0];
+        ctrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */])
+    ], EventPage.prototype, "content", void 0);
+    EventPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-buttons left>\n      <button ion-button icon-only large (click)="goHome()">\n        <ion-icon name="md-home"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title text-center>\n      {{event.title}}  - {{groups[groupId].name}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-rewind"></ion-icon>\n      </button>\n\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-fastforward"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n\n  <ion-list no-lines  ngInit="clearDate()">\n\n    <div *ngFor="let m of event.games">\n      <div *ngIf="isCurrentGroup(m)">\n        <ion-list-header *ngIf="isNewDate(m.date)">\n          {{m.date.toDateString()}}\n        </ion-list-header>\n        <ion-item class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{m.teams[1].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>\n        </ion-item>\n      </div>\n    </div>\n\n  </ion-list>\n\n  <h2>Result</h2>\n  <div class="bracket" >\n    <div class="round1">\n      <div *ngFor="let m of rounds[\'1\']; let i = index"  class="game-card" [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>\n         \n        </ion-card>\n      </div>\n\n\n\n\n    </div>\n    <div class="round2">\n\n      <div  *ngFor="let m of rounds[\'2\']; let i = index" >\n        \n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n   \n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>\n          \n        </ion-card>\n      </div>\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n\n<ion-footer>\n  <ion-navbar color="lightdark">\n    <ion-buttons >\n      <button start ion-button icon-only large (click)="showGames()">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n      <button center ion-button icon-only large (click)="showResult()">\n        <ion-icon name="md-podium"></ion-icon>\n      </button>\n      <button end ion-button icon-only large (click)="showInfo()">\n        <ion-icon name="md-information-circle"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]])
+    ], EventPage);
+    return EventPage;
+}());
+
+//# sourceMappingURL=event.js.map
+
+/***/ }),
+
+/***/ 104:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BackendProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
@@ -127,9 +256,24 @@ var BackendProvider = (function () {
         return new Promise(function (resolve) {
             _this.event = { title: "test event",
                 isOver: false,
+                groups: [
+                    {
+                        id: "A",
+                        name: "GroupA",
+                        type: "bracket"
+                    },
+                    {
+                        id: "B",
+                        name: "GroupB",
+                        type: "bracket"
+                    }
+                ],
                 games: [
                     {
                         date: "2018-04-05T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 2,
+                        groupId: "A",
                         teams: [
                             { name: "the king", score: "35", isWinner: true },
                             { name: "SF Monkeys", score: "12" }
@@ -137,7 +281,22 @@ var BackendProvider = (function () {
                         isFinal: true,
                     },
                     {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 1,
+                        groupId: "A",
+                        teams: [
+                            { name: "team with a very very long name", score: "5", isWinner: true },
+                            { name: "SF", score: "0" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
                         date: "2018-04-07T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 1,
+                        groupId: "B",
+                        location: { name: " 1312 eddy st" },
                         teams: [
                             { name: "sapporo" },
                             { name: "stella" }
@@ -145,6 +304,9 @@ var BackendProvider = (function () {
                     },
                     {
                         date: "2018-04-05T13:00:00.000Z",
+                        round: 2,
+                        roundIndex: 1,
+                        groupId: "A",
                         teams: [
                             { name: "team a", score: "2" },
                             { name: "team b", score: "2" }
@@ -177,14 +339,14 @@ var BackendProvider = (function () {
 
 /***/ }),
 
-/***/ 104:
+/***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SandboxPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -242,7 +404,7 @@ var SandboxPage = (function () {
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -255,16 +417,16 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 117;
+webpackEmptyAsyncContext.id = 118;
 
 /***/ }),
 
-/***/ 159:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/sandbox/sandbox.module": [
-		287,
+		288,
 		0
 	]
 };
@@ -279,21 +441,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 159;
+webpackAsyncContext.id = 160;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sandbox_sandbox__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -305,38 +464,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-var TabsPage = (function () {
-    function TabsPage() {
-        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__about_about__["a" /* AboutPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
-        this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__sandbox_sandbox__["a" /* SandboxPage */];
+var AboutPage = (function () {
+    function AboutPage(navCtrl) {
+        this.navCtrl = navCtrl;
     }
-    TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/tabs/tabs.html"*/'<ion-tabs color="lightdark">\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Test" tabIcon="plus"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/tabs/tabs.html"*/
+    AboutPage.prototype.swipe = function (event) {
+        console.log("Swipe " + event.direction);
+    };
+    AboutPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-about',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/about/about.html"*/
         }),
-        __metadata("design:paramtypes", [])
-    ], TabsPage);
-    return TabsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+    ], AboutPage);
+    return AboutPage;
 }());
 
-//# sourceMappingURL=tabs.js.map
+//# sourceMappingURL=about.js.map
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_tabs_event_tabs__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_event__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -370,7 +527,7 @@ var HomePage = (function () {
             _this.event = data;
             // change the main root to event
             var ctrl = _this.app.getRootNavs()[0];
-            ctrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__event_tabs_event_tabs__["a" /* EventTabsPage */]);
+            ctrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__event_event__["a" /* EventPage */]);
         });
     };
     HomePage.prototype.qrscanRequest = function () {
@@ -397,7 +554,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="lightdark">\n    <ion-title>\n      Tournament Scoring\n    </ion-title>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <button  ion-button color="primary" (click)="qrscanRequest()">Scan the QR Code of the event</button>\n\n  <h2>Or enter your event code</h2>\n \n  \n    <ion-item>\n      \n      <ion-input type="text" [(ngModel)]="eventCode"></ion-input>\n    </ion-item>\n<button  *ngIf="eventCode" ion-button color="primary" (click)="openEvent()">Open Event</button>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="lightdark">\n    \n    <ion-title>\n      Tournament Scoring\n    </ion-title>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <button  ion-button color="primary" (click)="qrscanRequest()">Scan the QR Code of the event</button>\n\n  <h2>Or enter your event code</h2>\n \n  \n    <ion-item>\n      \n      <ion-input type="text" [(ngModel)]="eventCode"></ion-input>\n    </ion-item>\n<button  *ngIf="eventCode" ion-button color="primary" (click)="openEvent()">Open Event</button>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_backend_backend__["a" /* BackendProvider */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_barcode_scanner__["a" /* BarcodeScanner */]])
     ], HomePage);
@@ -408,15 +565,13 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 205:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventTabsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_event__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -428,97 +583,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-var EventTabsPage = (function () {
-    function EventTabsPage() {
-        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__event_event__["a" /* EventPage */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__about_about__["a" /* AboutPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
-    }
-    EventTabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event-tabs/event-tabs.html"*/'<ion-tabs color="lightdark">\n  <ion-tab [root]="tab1Root" tabTitle="today" tabIcon="play"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Classement" tabIcon="podium"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Calendar" tabIcon="calendar"></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event-tabs/event-tabs.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], EventTabsPage);
-    return EventTabsPage;
-}());
-
-//# sourceMappingURL=event-tabs.js.map
-
-/***/ }),
-
-/***/ 206:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__ = __webpack_require__(103);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the AddEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var EventPage = (function () {
-    function EventPage(navCtrl, navParams, view, backend) {
+var ResultPage = (function () {
+    function ResultPage(navCtrl) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.view = view;
-        this.backend = backend;
-        this.event = {};
     }
-    EventPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddEventPage');
-        this.event = this.backend.getCurrentEvent();
+    ResultPage.prototype.swipe = function (event) {
+        console.log("Swipe " + event.direction);
     };
-    EventPage.prototype.ionViewDidEnter = function () {
-        console.log('ionViewDidEnter ');
-        this.content.scrollTo(0, 500, 200);
-    };
-    EventPage.prototype.scrollTo = function () {
-        this.content.scrollTo(0, 500, 200);
-    };
-    EventPage.prototype.clearDate = function () {
-        this.current = undefined;
-    };
-    EventPage.prototype.isNewDate = function (d) {
-        var result = true;
-        if ((this.current != undefined) && (d != undefined)) {
-            result = (d.toDateString() != this.current.toDateString());
-        }
-        this.current = d;
-        return (result);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */])
-    ], EventPage.prototype, "content", void 0);
-    EventPage = __decorate([
+    ResultPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-title>\n      {{event.title}}\n    </ion-title>\n  </ion-navbar>\n  <!--ion-toolbar color="secondary">\n    <ion-title>\n      New Event\n    </ion-title>\n      <ion-buttons end>\n        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>\n      </ion-buttons>\n    </ion-toolbar-->\n  </ion-header>\n\n  <ion-content >\n\n    <ion-list no-lines  ngInit="clearDate()">\n\n      <div *ngFor="let m of event.games">\n        <ion-list-header *ngIf="isNewDate(m.date)">\n          {{m.date.toDateString()}}\n        </ion-list-header>\n        <ion-item class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{m.teams[1].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n        </ion-item>\n      </div>\n\n    </ion-list>\n\n\n\n  </ion-content>'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
+            selector: 'page-result',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/result.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<div class="bracket" (swipe)="swipe($event)">\n	<ul class="round round-1">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>79</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">NC A&T <span>48</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Colo St <span>84</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Missouri <span>72</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Oklahoma St <span>55</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Oregon <span>68</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Saint Louis <span>64</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">New Mexico St <span>44</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Memphis <span>54</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">St Mary\'s <span>52</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Mich St <span>65</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Valparaiso <span>54</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Creighton <span>67</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Cincinnati <span>63</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Duke <span>73</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Albany <span>61</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	<ul class="round round-2">\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Lousville <span>82</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Colo St <span>56</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top winner">Oregon <span>74</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom ">Saint Louis <span>57</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Memphis <span>48</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Mich St <span>70</span></li>\n\n		<li class="spacer">&nbsp;</li>\n		\n		<li class="game game-top ">Creighton <span>50</span></li>\n		<li class="game game-spacer">&nbsp;</li>\n		<li class="game game-bottom winner">Duke <span>66</span></li>\n\n		<li class="spacer">&nbsp;</li>\n	</ul>\n	\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/result.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]])
-    ], EventPage);
-    return EventPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+    ], ResultPage);
+    return ResultPage;
 }());
 
-//# sourceMappingURL=event.js.map
+//# sourceMappingURL=result.js.map
 
 /***/ }),
 
@@ -542,28 +623,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_event_event__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_event_tabs_event_tabs__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_sandbox_sandbox__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_backend_backend__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_camera__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_barcode_scanner__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_event_event__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_event_result__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_event_tabs_event_tabs__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sandbox_sandbox__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_backend_backend__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_camera__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_barcode_scanner__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -603,8 +686,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_event_event__["a" /* EventPage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_sandbox_sandbox__["a" /* SandboxPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_event_tabs_event_tabs__["a" /* EventTabsPage */]
+                __WEBPACK_IMPORTED_MODULE_12__pages_sandbox_sandbox__["a" /* SandboxPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_event_result__["a" /* ResultPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_event_tabs_event_tabs__["a" /* EventTabsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
@@ -623,16 +707,17 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_event_event__["a" /* EventPage */],
-                __WEBPACK_IMPORTED_MODULE_11__pages_sandbox_sandbox__["a" /* SandboxPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_event_tabs_event_tabs__["a" /* EventTabsPage */]
+                __WEBPACK_IMPORTED_MODULE_12__pages_sandbox_sandbox__["a" /* SandboxPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_event_result__["a" /* ResultPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_event_tabs_event_tabs__["a" /* EventTabsPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_15__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_16__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
-                __WEBPACK_IMPORTED_MODULE_14__providers_backend_backend__["a" /* BackendProvider */]
+                __WEBPACK_IMPORTED_MODULE_16__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_17__ionic_native_barcode_scanner__["a" /* BarcodeScanner */],
+                __WEBPACK_IMPORTED_MODULE_15__providers_backend_backend__["a" /* BackendProvider */]
             ]
         })
     ], AppModule);
@@ -649,10 +734,10 @@ var AppModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -686,6 +771,46 @@ var MyApp = (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 287:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventTabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contact_contact__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_event__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_result__ = __webpack_require__(207);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var EventTabsPage = (function () {
+    function EventTabsPage() {
+        this.tab1Root = __WEBPACK_IMPORTED_MODULE_2__event_event__["a" /* EventPage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_3__event_result__["a" /* ResultPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_1__contact_contact__["a" /* ContactPage */];
+    }
+    EventTabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event-tabs/event-tabs.html"*/'<ion-tabs color="lightdark">\n  <ion-tab [root]="tab1Root" tabTitle="Games" tabIcon="md-calendar"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Results" tabIcon="md-podium"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Info" tabIcon="md-information-circle"></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event-tabs/event-tabs.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], EventTabsPage);
+    return EventTabsPage;
+}());
+
+//# sourceMappingURL=event-tabs.js.map
 
 /***/ })
 

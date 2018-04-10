@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { EventPage } from '../pages/event/event';
+import { ResultPage } from '../pages/event/result';
 import { EventTabsPage } from '../pages/event-tabs/event-tabs';
 import { SandboxPage } from '../pages/sandbox/sandbox';
 
@@ -37,6 +38,7 @@ class CameraMock extends Camera {
     TabsPage,
     EventPage,
     SandboxPage,
+    ResultPage,
     EventTabsPage
   ],
   imports: [
@@ -53,6 +55,7 @@ class CameraMock extends Camera {
     TabsPage,
     EventPage,
     SandboxPage,
+    ResultPage,
     EventTabsPage
   ],
   providers: [

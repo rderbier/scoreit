@@ -1,24 +1,33 @@
 <ion-header>
 	<ion-navbar color="lightdark">
-    <ion-title>
-      {{event.title}}
+    <ion-buttons left>
+      <button ion-button icon-only large (click)="goHome()">
+        <ion-icon name="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+      {{event.title}}  - {{groups[groupId].name}}
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="nextGroup()">
+        <ion-icon name="md-rewind"></ion-icon>
+      </button>
+
+      <button ion-button icon-only (click)="nextGroup()">
+        <ion-icon name="md-fastforward"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
-  <!--ion-toolbar color="secondary">
-    <ion-title>
-      New Event
-    </ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
-      </ion-buttons>
-    </ion-toolbar-->
-  </ion-header>
 
-  <ion-content >
+</ion-header>
 
-    <ion-list no-lines  ngInit="clearDate()">
+<ion-content >
 
-      <div *ngFor="let m of event.games">
+  <ion-list no-lines  ngInit="clearDate()">
+
+    <div *ngFor="let m of event.games">
+      <div *ngIf="isCurrentGroup(m)">
         <ion-list-header *ngIf="isNewDate(m.date)">
           {{m.date.toDateString()}}
         </ion-list-header>
@@ -34,9 +43,9 @@
 
               <span class="matches__teamscores" *ngIf="m.isFinal==true" >
 
-                <span class="matches__teamscores-side">{{m.teams[0].score}}</span>
+                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
 
-                <span class="matches__teamscores-side">{{m.teams[1].score}}</span>
+                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
 
               </span>
               <span class="matches__time" *ngIf="m.isFinal!=true" >
@@ -55,11 +64,82 @@
 
 
           </a>
+          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>
         </ion-item>
       </div>
+    </div>
 
-    </ion-list>
+  </ion-list>
+
+  <h2>Result</h2>
+  <div class="bracket" >
+    <div class="round1">
+      <div *ngFor="let m of rounds['1']; let i = index"  class="game-card" [ngClass]="{'upper': i%2===0, 'lower': i%2===1 }">
+        <ion-card  class="scorecard" >
+
+          
+          <div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> 
+          <div class="scorecard_item matches__status ">
+          <span class="matches__teamscores" *ngIf="m.isFinal==true" >
+
+                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+
+                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+
+              </span>
+            </div>
+          <div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>
+         
+        </ion-card>
+      </div>
 
 
 
-  </ion-content>
+
+    </div>
+    <div class="round2">
+
+      <div  *ngFor="let m of rounds['2']; let i = index" >
+        
+        <ion-card  class="scorecard" >
+
+          
+          <div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> 
+          <div class="scorecard_item matches__status ">
+          <span class="matches__teamscores" *ngIf="m.isFinal==true" >
+
+                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+
+                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+
+              </span>
+            </div>
+   
+          <div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>
+          
+        </ion-card>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-navbar color="lightdark">
+    <ion-buttons >
+      <button start ion-button icon-only large (click)="showGames()">
+        <ion-icon name="md-calendar"></ion-icon>
+      </button>
+      <button center ion-button icon-only large (click)="showResult()">
+        <ion-icon name="md-podium"></ion-icon>
+      </button>
+      <button end ion-button icon-only large (click)="showInfo()">
+        <ion-icon name="md-information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-footer>

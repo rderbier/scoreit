@@ -27977,66 +27977,118 @@ ion-navbar.toolbar {
   opacity: 0 !important;
 }
 
-page-about .bracket, page-about ul {
+page-event {
+  /* ------- 
+#items on left and right grow at 100% and text is not wrap with ellipsis
+#the center is match_status 
+*/
+}
+
+page-event *,
+page-event *:before,
+page-event *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+page-event body {
+  min-width: 1200px;
+  margin: 0;
+  padding: 50px;
+  color: #eee9dc;
+  font: 16px Verdana, sans-serif;
+  background: #2e6ba7;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+page-event #wrapper {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-page-about ul {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: 200px;
-  list-style: none;
-  padding: 0;
+page-event .game-card {
+  margin-top: 50px;
 }
 
-page-about .game + li {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+page-event .game-card:first-child {
+  margin-top: 0px;
 }
 
-page-about li:first-child, page-about li:last-child {
-  -webkit-box-flex: .5;
-  -webkit-flex-grow: .5;
-  -ms-flex-positive: .5;
-  flex-grow: .5;
+page-event .round2 {
+  padding-top: 65px;
 }
 
-page-about .game {
-  padding-left: 20px;
+page-event .round2 .game-card {
+  margin-top: 50px;
 }
 
-page-about .winner {
-  font-weight: bold;
+page-event .round2 .game-card:first-child {
+  margin-top: 0px;
 }
 
-page-about .game span {
-  float: right;
-  margin-right: 5px;
+page-event .round1 {
+  width: 50%;
 }
 
-page-about .game-top {
-  border-bottom: 1px solid #aaa;
+page-event .round1 .upper {
+  position: relative;
+  min-height: 60px;
 }
 
-page-about .game-top + li {
-  border-right: 1px solid #aaa;
-  min-height: 40px;
+page-event .round1 .upper:after {
+  content: "";
+  width: 100px;
+  border-top: 2px solid red;
+  border-right: 2px solid red;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  height: 25px;
+  margin-top: 1px;
+  border-radius: 0 10px 0 0;
 }
 
-page-about .game-bottom {
-  border-top: 1px solid #aaa;
+page-event .round1 .lower {
+  position: relative;
+  min-height: 60px;
+}
+
+page-event .round1 .lower:after {
+  content: "";
+  width: 100px;
+  border-bottom: 2px solid red;
+  border-right: 2px solid red;
+  border-radius: 0 0 10px 0;
+  position: absolute;
+  left: 100%;
+  top: 15px;
+  height: 25px;
+  margin-top: 1px;
+}
+
+page-event .round2 {
+  width: 50%;
 }
 
 page-event ion-content .card h2 {
   color: dark;
+}
+
+page-event ion-navbar ion-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-event ion-navbar ion-buttons button {
+  width: 100%;
 }
 
 page-event ion-list-header.item {
@@ -28057,28 +28109,56 @@ page-event .item:hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
-page-event .matches__item-col {
-  position: relative;
-  display: table-cell;
-  height: 36px;
-  vertical-align: middle;
-  white-space: nowrap;
+page-event .matches_location {
   text-align: center;
+  font-size: 1em;
+}
+
+page-event .matches__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+}
+
+page-event .matches__item-col {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
   font-family: 'SkyTextReg',sans-serif;
   font-weight: normal;
   font-size: 1em;
   color: inherit;
-  font-size: 1em;
-}
-
-page-event .matches__participant {
-  text-align: right;
-  font-family: 'SkyTextMed',sans-serif;
   font-weight: normal;
-  font-size: 1em;
-  color: inherit;
-  text-overflow: ellipsis;
 }
 
 page-event .matches__participant.winner {
@@ -28086,20 +28166,13 @@ page-event .matches__participant.winner {
 }
 
 page-event .matches__status {
-  width: 4em;
-  border-left: .3em solid transparent;
-  border-right: .3em solid transparent;
-}
-
-page-event .matches__status + .matches__participant {
-  text-align: left;
-}
-
-page-event .matches__item {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  will-change: contents;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-basis: 10em;
+  -ms-flex-preferred-size: 10em;
+  flex-basis: 10em;
 }
 
 page-event a {
@@ -28127,14 +28200,12 @@ page-event .matches__teamscores {
   table-layout: fixed;
   border-collapse: separate;
   letter-spacing: -1px;
-  background: #d6181f;
-  border-color: #d6181f;
   color: #fff;
 }
 
 page-event .matches__teamscores-side {
   display: table-cell;
-  background: inherit;
+  background: #d6181f;
   vertical-align: middle;
   position: relative;
   text-align: center;
@@ -28153,12 +28224,189 @@ page-event .matches__teamscores-side {
   border-right-width: 0;
 }
 
-page-event .matches__teamscores-side + .matches__teamscores-side:before {
-  content: "-";
-  width: 1em;
+page-event .bracket {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-event .bracket .scorecard {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 80px;
+}
+
+page-event .bracket .scorecard_item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   text-align: center;
+  vertical-align: midle;
+  line-height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-event .bracket .matches__status {
+  width: 10em;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-basis: 2em;
+  -ms-flex-preferred-size: 2em;
+  flex-basis: 2em;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+page-event .bracket .matches__status .left:before {
+  content: "";
+  border-left: 2px solid red;
   position: absolute;
-  left: -0.5em;
+  left: 50%;
+  top: -1em;
+  height: 1em;
+}
+
+page-event .bracket .matches__status .right:before {
+  content: "";
+  border-left: 2px solid red;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  height: 1em;
+}
+
+page-event ul {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 200px;
+  list-style: none;
+  padding: 0;
+}
+
+page-event .game + li {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+page-event li:first-child, page-event li:last-child {
+  -webkit-box-flex: .5;
+  -webkit-flex-grow: .5;
+  -ms-flex-positive: .5;
+  flex-grow: .5;
+}
+
+page-event .game {
+  padding-left: 20px;
+}
+
+page-event .winner {
+  font-weight: bold;
+}
+
+page-event .game span {
+  float: right;
+  margin-right: 5px;
+}
+
+page-event .game-top + li {
+  border-right: 1px solid #aaa;
+  min-height: 40px;
+  background-color: transparent;
+}
+
+page-event .round {
+  width: 50%;
+}
+
+page-result .bracket, page-result ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-result ul {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 200px;
+  list-style: none;
+  padding: 0;
+}
+
+page-result .game + li {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+page-result li:first-child, page-result li:last-child {
+  -webkit-box-flex: .5;
+  -webkit-flex-grow: .5;
+  -ms-flex-positive: .5;
+  flex-grow: .5;
+}
+
+page-result .game {
+  padding-left: 20px;
+}
+
+page-result .winner {
+  font-weight: bold;
+}
+
+page-result .game span {
+  float: right;
+  margin-right: 5px;
+}
+
+page-result .game-top {
+  border-bottom: 1px solid #aaa;
+}
+
+page-result .game-top + li {
+  border-right: 1px solid #aaa;
+  min-height: 40px;
+  background-color: transparent;
+}
+
+page-result .game-bottom {
+  border-top: 1px solid #aaa;
 }
 
 page-home ion-content {

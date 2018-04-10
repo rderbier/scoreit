@@ -42,9 +42,24 @@ export class BackendProvider {
     return new Promise(resolve => {
        this.event = { title : "test event",
        isOver : false,
+       groups :[
+       {
+          id: "A",
+          name: "GroupA",
+          type: "bracket"
+       },
+       {
+          id: "B",
+          name: "GroupB",
+          type: "bracket"
+       }
+       ],
        games: [
          {
          date: "2018-04-05T13:00:00.000Z",
+         round: 1,
+         roundIndex: 2,
+         groupId: "A",
          teams : [
           { name: "the king", score:"35", isWinner: true},
           { name: "SF Monkeys", score:"12" }
@@ -52,9 +67,24 @@ export class BackendProvider {
    
          isFinal: true,
          },
-         
+         {
+         date: "2018-04-05T13:00:00.000Z",
+         round: 1,
+         roundIndex: 1,
+         groupId: "A",
+         teams : [
+          { name: "team with a very very long name", score:"5", isWinner: true},
+          { name: "SF", score:"0" }
+          ],
+   
+         isFinal: true,
+         },
          {
          date: "2018-04-07T13:00:00.000Z",
+         round: 1,
+         roundIndex: 1,
+         groupId: "B",
+         location: {name:" 1312 eddy st"},
          teams : [
           { name: "sapporo"},
           { name: "stella"}
@@ -62,6 +92,9 @@ export class BackendProvider {
          },
          {
          date: "2018-04-05T13:00:00.000Z",
+         round: 2,
+         roundIndex: 1,
+         groupId: "A",
          teams : [
           { name: "team a", score:"2"},
           { name: "team b", score:"2" }
