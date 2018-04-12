@@ -118,15 +118,20 @@ var EventPage = (function () {
         this.event = {};
         this.groupIds = [];
         this.groups = [];
+        this.showTopic('games');
         this.event = this.backend.getCurrentEvent();
-        for (var _i = 0, _a = this.event.groups; _i < _a.length; _i++) {
-            var g = _a[_i];
+        // trasnform array in map
+        this.teams = [];
+        for (var _i = 0, _a = this.event.teams; _i < _a.length; _i++) {
+            var t = _a[_i];
+            this.teams[t.id] = t;
+        }
+        for (var _b = 0, _c = this.event.groups; _b < _c.length; _b++) {
+            var g = _c[_b];
             this.groups[g.id] = g;
             this.groupIds.push(g.id);
         }
-        this.groupId = this.event.games[0].groupId;
-        this.buildBracket(this.groupId);
-        // this.group = this.groups[this.groupId].name;
+        this.setGroup(0);
         this.current = undefined;
     }
     EventPage.prototype.buildBracket = function (group) {
@@ -149,6 +154,21 @@ var EventPage = (function () {
                 });
             }
         }
+    };
+    EventPage.prototype.buildCalendarGames = function (group) {
+        // build the calendar view of the games
+        this.calendarGames = [];
+        this.calendarGamesKeys = [];
+        for (var _i = 0, _a = this.event.games; _i < _a.length; _i++) {
+            var game = _a[_i];
+            if (game.groupId == this.groupId) {
+                var date = game.date.toDateString();
+                if (this.calendarGames[date] == undefined)
+                    this.calendarGames[date] = [];
+                this.calendarGames[date].push(game);
+            }
+        }
+        this.calendarGamesKeys = Object.keys(this.calendarGames);
     };
     EventPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddEventPage');
@@ -177,25 +197,33 @@ var EventPage = (function () {
     EventPage.prototype.nextGroup = function () {
         var index = this.groupIds.indexOf(this.groupId);
         index = (index + 1) % this.groupIds.length;
-        this.groupId = this.groupIds[index];
+        this.setGroup(index);
+    };
+    EventPage.prototype.setGroup = function (groupId) {
+        this.groupId = this.groupIds[groupId];
+        this.groupType = this.groups[this.groupId].type;
         this.buildBracket(this.groupId);
-        //this.group = this.groups[this.groupId].name;
+        this.buildCalendarGames(this.groupId);
     };
     EventPage.prototype.goHome = function () {
         var ctrl = this.app.getRootNavs()[0];
         ctrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
     };
+    EventPage.prototype.showTopic = function (topic) {
+        this.show = topic;
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]) === "function" && _a || Object)
     ], EventPage.prototype, "content", void 0);
     EventPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-buttons left>\n      <button ion-button icon-only large (click)="goHome()">\n        <ion-icon name="md-home"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title text-center>\n      {{event.title}}  - {{groups[groupId].name}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-rewind"></ion-icon>\n      </button>\n\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-fastforward"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n\n  <ion-list no-lines  ngInit="clearDate()">\n\n    <div *ngFor="let m of event.games">\n      <div *ngIf="isCurrentGroup(m)">\n        <ion-list-header *ngIf="isNewDate(m.date)">\n          {{m.date.toDateString()}}\n        </ion-list-header>\n        <ion-item class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{m.teams[1].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>\n        </ion-item>\n      </div>\n    </div>\n\n  </ion-list>\n\n  <h2>Result</h2>\n  <div class="bracket" >\n    <div class="round1">\n      <div *ngFor="let m of rounds[\'1\']; let i = index"  class="game-card" [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>\n         \n        </ion-card>\n      </div>\n\n\n\n\n    </div>\n    <div class="round2">\n\n      <div  *ngFor="let m of rounds[\'2\']; let i = index" >\n        \n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{m.teams[0].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n   \n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{m.teams[1].name}} </div>\n          \n        </ion-card>\n      </div>\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n\n<ion-footer>\n  <ion-navbar color="lightdark">\n    <ion-buttons >\n      <button start ion-button icon-only large (click)="showGames()">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n      <button center ion-button icon-only large (click)="showResult()">\n        <ion-icon name="md-podium"></ion-icon>\n      </button>\n      <button end ion-button icon-only large (click)="showInfo()">\n        <ion-icon name="md-information-circle"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
+            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-buttons left>\n      <button ion-button icon-only large (click)="goHome()">\n        <ion-icon name="md-home"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title text-center>\n      {{event.title}}  - {{groups[groupId].name}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-rewind"></ion-icon>\n      </button>\n\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-fastforward"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n<div *ngIf="show==\'games\'">\n\n  <ion-list no-lines>\n\n    <div *ngFor="let d of calendarGamesKeys">\n   \n        <ion-list-header >\n          {{d}}\n        </ion-list-header>\n        <ion-item *ngFor="let m of calendarGames[d]" class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{teams[m.teams[1].id].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>\n        </ion-item>\n    \n    </div>\n\n  </ion-list>\n</div>\n\n  <div *ngIf="show==\'results\'">\n\n  \n  <div class="bracket" *ngIf="groupType==\'bracket\'">\n    <div class="round1">\n      <div *ngFor="let m of rounds[\'1\']; let i = index"  class="game-card" [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n         \n        </ion-card>\n      </div>\n\n\n\n\n    </div>\n    <div class="round2">\n\n      <div  *ngFor="let m of rounds[\'2\']; let i = index" >\n        \n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n   \n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n          \n        </ion-card>\n      </div>\n    </div>\n\n  </div>\n  <div class="pool" *ngIf="groupType==\'pool\'">\n    <div class="bar bar-subheader bar-positive">\n  <h2 class="title">pool</h2>\n  </div>\n  <ion-list no-lines >\n\n   \n      \n        \n        <ion-item *ngFor="let r of groups[groupId].ranks">\n          {{r.rank}}-{{r.team}}\n        </ion-item>\n      </ion-list>\n</div>\n  </div>\n\n\n</ion-content>\n\n\n<ion-footer>\n  <ion-navbar color="lightdark">\n    <ion-buttons >\n      <button start ion-button icon-only large (click)="showTopic(\'games\')">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n      <button center ion-button icon-only large (click)="showTopic(\'results\')">\n        <ion-icon name="md-podium"></ion-icon>\n      </button>\n      <button end ion-button icon-only large (click)="showTopic(\'info\')">\n        <ion-icon name="md-information-circle"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]) === "function" && _f || Object])
     ], EventPage);
     return EventPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=event.js.map
@@ -256,6 +284,408 @@ var BackendProvider = (function () {
         return new Promise(function (resolve) {
             _this.event = { title: "test event",
                 isOver: false,
+                teams: [
+                    {
+                        "id": "T1",
+                        "name": "Leo In Lobortis Corp."
+                    },
+                    {
+                        "id": "T2",
+                        "name": "Donec Nibh Quisque Industries"
+                    },
+                    {
+                        "id": "T3",
+                        "name": "Feugiat Lorem Limited"
+                    },
+                    {
+                        "id": "T4",
+                        "name": "Nec Associates"
+                    },
+                    {
+                        "id": "T5",
+                        "name": "Mollis Nec Cursus Associates"
+                    },
+                    {
+                        "id": "T6",
+                        "name": "Vitae Erat Vivamus Inc."
+                    },
+                    {
+                        "id": "T7",
+                        "name": "Magna Et Ipsum Company"
+                    },
+                    {
+                        "id": "T8",
+                        "name": "Placerat Eget LLC"
+                    },
+                    {
+                        "id": "T9",
+                        "name": "Vestibulum Mauris Magna Associates"
+                    },
+                    {
+                        "id": "T10",
+                        "name": "Sapien Gravida Associates"
+                    },
+                    {
+                        "id": "T11",
+                        "name": "Donec PC"
+                    },
+                    {
+                        "id": "T12",
+                        "name": "Nostra Per Inceptos Corp."
+                    },
+                    {
+                        "id": "T13",
+                        "name": "Neque PC"
+                    },
+                    {
+                        "id": "T14",
+                        "name": "Ornare Lectus Ante Corporation"
+                    },
+                    {
+                        "id": "T15",
+                        "name": "Sed Hendrerit Limited"
+                    },
+                    {
+                        "id": "T16",
+                        "name": "Egestas Aliquam Nec Institute"
+                    },
+                    {
+                        "id": "T17",
+                        "name": "Risus At PC"
+                    },
+                    {
+                        "id": "T18",
+                        "name": "Vestibulum Ut Inc."
+                    },
+                    {
+                        "id": "T19",
+                        "name": "Aliquam Corporation"
+                    },
+                    {
+                        "id": "T20",
+                        "name": "Enim Nisl Elementum LLC"
+                    },
+                    {
+                        "id": "T21",
+                        "name": "Facilisis Non Ltd"
+                    },
+                    {
+                        "id": "T22",
+                        "name": "Urna Nullam Inc."
+                    },
+                    {
+                        "id": "T23",
+                        "name": "Nam Porttitor Scelerisque Foundation"
+                    },
+                    {
+                        "id": "T24",
+                        "name": "Vel Nisl Institute"
+                    },
+                    {
+                        "id": "T25",
+                        "name": "Massa Lobortis Ultrices Corporation"
+                    },
+                    {
+                        "id": "T26",
+                        "name": "Quam Vel Corporation"
+                    },
+                    {
+                        "id": "T27",
+                        "name": "Molestie Tellus Aenean Ltd"
+                    },
+                    {
+                        "id": "T28",
+                        "name": "Adipiscing Incorporated"
+                    },
+                    {
+                        "id": "T29",
+                        "name": "Velit Consulting"
+                    },
+                    {
+                        "id": "T30",
+                        "name": "Donec Nibh Quisque Company"
+                    },
+                    {
+                        "id": "T31",
+                        "name": "Id Corp."
+                    },
+                    {
+                        "id": "T32",
+                        "name": "Urna Et Foundation"
+                    },
+                    {
+                        "id": "T33",
+                        "name": "Ac Industries"
+                    },
+                    {
+                        "id": "T34",
+                        "name": "Nec Incorporated"
+                    },
+                    {
+                        "id": "T35",
+                        "name": "Rutrum Fusce Dolor LLC"
+                    },
+                    {
+                        "id": "T36",
+                        "name": "Nascetur Ridiculus Associates"
+                    },
+                    {
+                        "id": "T37",
+                        "name": "Egestas Urna Justo Corp."
+                    },
+                    {
+                        "id": "T38",
+                        "name": "Feugiat Industries"
+                    },
+                    {
+                        "id": "T39",
+                        "name": "Vivamus Sit Amet LLP"
+                    },
+                    {
+                        "id": "T40",
+                        "name": "Cursus Et Magna Associates"
+                    },
+                    {
+                        "id": "T41",
+                        "name": "Dolor Company"
+                    },
+                    {
+                        "id": "T42",
+                        "name": "Orci Consulting"
+                    },
+                    {
+                        "id": "T43",
+                        "name": "Nulla Industries"
+                    },
+                    {
+                        "id": "T44",
+                        "name": "Primis Ltd"
+                    },
+                    {
+                        "id": "T45",
+                        "name": "Vel Mauris Integer Company"
+                    },
+                    {
+                        "id": "T46",
+                        "name": "Suspendisse Sed Dolor Corp."
+                    },
+                    {
+                        "id": "T47",
+                        "name": "Metus Urna Associates"
+                    },
+                    {
+                        "id": "T48",
+                        "name": "Pede Praesent Eu Ltd"
+                    },
+                    {
+                        "id": "T49",
+                        "name": "Enim Curabitur Consulting"
+                    },
+                    {
+                        "id": "T50",
+                        "name": "Nisi LLC"
+                    },
+                    {
+                        "id": "T51",
+                        "name": "Mollis Phasellus Libero Corp."
+                    },
+                    {
+                        "id": "T52",
+                        "name": "Mus Proin Vel Consulting"
+                    },
+                    {
+                        "id": "T53",
+                        "name": "Dis Parturient Corp."
+                    },
+                    {
+                        "id": "T54",
+                        "name": "Tempus Lorem LLC"
+                    },
+                    {
+                        "id": "T55",
+                        "name": "At Corp."
+                    },
+                    {
+                        "id": "T56",
+                        "name": "Ultricies Ltd"
+                    },
+                    {
+                        "id": "T57",
+                        "name": "A Mi Fringilla Foundation"
+                    },
+                    {
+                        "id": "T58",
+                        "name": "Pharetra LLP"
+                    },
+                    {
+                        "id": "T59",
+                        "name": "Ullamcorper Velit In Industries"
+                    },
+                    {
+                        "id": "T60",
+                        "name": "Duis LLC"
+                    },
+                    {
+                        "id": "T61",
+                        "name": "Dolor Elit Corp."
+                    },
+                    {
+                        "id": "T62",
+                        "name": "Nisl Limited"
+                    },
+                    {
+                        "id": "T63",
+                        "name": "Nulla In Corp."
+                    },
+                    {
+                        "id": "T64",
+                        "name": "Donec Tempor Institute"
+                    },
+                    {
+                        "id": "T65",
+                        "name": "Vel Venenatis PC"
+                    },
+                    {
+                        "id": "T66",
+                        "name": "Nullam Lobortis Quam Limited"
+                    },
+                    {
+                        "id": "T67",
+                        "name": "Scelerisque Institute"
+                    },
+                    {
+                        "id": "T68",
+                        "name": "Facilisis Incorporated"
+                    },
+                    {
+                        "id": "T69",
+                        "name": "Lorem Lorem Luctus Inc."
+                    },
+                    {
+                        "id": "T70",
+                        "name": "Mauris Morbi Incorporated"
+                    },
+                    {
+                        "id": "T71",
+                        "name": "Lorem Eu Metus LLC"
+                    },
+                    {
+                        "id": "T72",
+                        "name": "Ut Ipsum Associates"
+                    },
+                    {
+                        "id": "T73",
+                        "name": "Magna Incorporated"
+                    },
+                    {
+                        "id": "T74",
+                        "name": "Bibendum Consulting"
+                    },
+                    {
+                        "id": "T75",
+                        "name": "Mi Lacinia Ltd"
+                    },
+                    {
+                        "id": "T76",
+                        "name": "Laoreet Lectus Quis Foundation"
+                    },
+                    {
+                        "id": "T77",
+                        "name": "Lorem Sit Amet Company"
+                    },
+                    {
+                        "id": "T78",
+                        "name": "Laoreet Institute"
+                    },
+                    {
+                        "id": "T79",
+                        "name": "A Facilisis Corp."
+                    },
+                    {
+                        "id": "T80",
+                        "name": "In Condimentum Donec Institute"
+                    },
+                    {
+                        "id": "T81",
+                        "name": "Neque LLP"
+                    },
+                    {
+                        "id": "T82",
+                        "name": "In Scelerisque Scelerisque LLC"
+                    },
+                    {
+                        "id": "T83",
+                        "name": "Blandit Corp."
+                    },
+                    {
+                        "id": "T84",
+                        "name": "Quam Consulting"
+                    },
+                    {
+                        "id": "T85",
+                        "name": "Nec Tempus Corporation"
+                    },
+                    {
+                        "id": "T86",
+                        "name": "A Mi Associates"
+                    },
+                    {
+                        "id": "T87",
+                        "name": "In Aliquet Lobortis Incorporated"
+                    },
+                    {
+                        "id": "T88",
+                        "name": "Imperdiet Ullamcorper Company"
+                    },
+                    {
+                        "id": "T89",
+                        "name": "Sem Industries"
+                    },
+                    {
+                        "id": "T90",
+                        "name": "Porttitor Tellus Non Limited"
+                    },
+                    {
+                        "id": "T91",
+                        "name": "Vel Faucibus Id Institute"
+                    },
+                    {
+                        "id": "T92",
+                        "name": "Phasellus Dapibus Quam Industries"
+                    },
+                    {
+                        "id": "T93",
+                        "name": "Nibh Phasellus Industries"
+                    },
+                    {
+                        "id": "T94",
+                        "name": "Gravida Nunc Sed Ltd"
+                    },
+                    {
+                        "id": "T95",
+                        "name": "Magna A Neque Incorporated"
+                    },
+                    {
+                        "id": "T96",
+                        "name": "Nulla Vulputate Dui Corporation"
+                    },
+                    {
+                        "id": "T97",
+                        "name": "Non Lacinia At Ltd"
+                    },
+                    {
+                        "id": "T98",
+                        "name": "Volutpat Associates"
+                    },
+                    {
+                        "id": "T99",
+                        "name": "Ut Nec Urna LLP"
+                    },
+                    {
+                        "id": "T100",
+                        "name": "Eget Varius Corporation"
+                    }
+                ],
                 groups: [
                     {
                         id: "A",
@@ -266,6 +696,17 @@ var BackendProvider = (function () {
                         id: "B",
                         name: "GroupB",
                         type: "bracket"
+                    },
+                    {
+                        id: "C",
+                        name: "GroupC",
+                        type: "pool",
+                        rankData: ["pt", "tt"],
+                        ranks: [
+                            { "rank": 1, "team": "T2", data: { pt: "12", tt: "25" } },
+                            { "rank": 2, "team": "T25", data: { pt: "10", tt: "25" } },
+                            { "rank": 3, "team": "T5", data: { pt: "8", tt: "5" } }
+                        ]
                     }
                 ],
                 games: [
@@ -275,8 +716,8 @@ var BackendProvider = (function () {
                         roundIndex: 2,
                         groupId: "A",
                         teams: [
-                            { name: "the king", score: "35", isWinner: true },
-                            { name: "SF Monkeys", score: "12" }
+                            { id: "T40", score: "35", isWinner: true },
+                            { id: "T41", score: "12" }
                         ],
                         isFinal: true,
                     },
@@ -286,8 +727,8 @@ var BackendProvider = (function () {
                         roundIndex: 1,
                         groupId: "A",
                         teams: [
-                            { name: "team with a very very long name", score: "5", isWinner: true },
-                            { name: "SF", score: "0" }
+                            { id: "T1", score: "5", isWinner: true },
+                            { id: "T2", score: "0" }
                         ],
                         isFinal: true,
                     },
@@ -298,18 +739,40 @@ var BackendProvider = (function () {
                         groupId: "B",
                         location: { name: " 1312 eddy st" },
                         teams: [
-                            { name: "sapporo" },
-                            { name: "stella" }
+                            { id: "T4" },
+                            { id: "T5" }
                         ]
                     },
                     {
-                        date: "2018-04-05T13:00:00.000Z",
+                        date: "2018-04-06T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 3,
+                        groupId: "A",
+                        teams: [
+                            { id: "T20", score: "35", isWinner: true },
+                            { id: "T30", score: "12" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-07T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 4,
+                        groupId: "A",
+                        teams: [
+                            { id: "T3", score: "5", isWinner: true },
+                            { id: "T6", score: "2" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-07T13:00:00.000Z",
                         round: 2,
                         roundIndex: 1,
                         groupId: "A",
                         teams: [
-                            { name: "team a", score: "2" },
-                            { name: "team b", score: "2" }
+                            { id: "T1", score: "2" },
+                            { id: "T40", score: "2" }
                         ],
                         isFinal: true,
                     },
@@ -330,9 +793,10 @@ var BackendProvider = (function () {
     };
     BackendProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], BackendProvider);
     return BackendProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=backend.js.map

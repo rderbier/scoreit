@@ -20,6 +20,7 @@ import { App } from 'ionic-angular';
 export class EventPage {
   @ViewChild(Content) content: Content;
   title: string;
+  show: string;
   startDate: Date;
   event: any;
   current: Date;
@@ -27,28 +28,40 @@ export class EventPage {
  // group: string;
   groupId: string;
   groupIds: Array<string>;
+  teams: Array<any>;
+  calendarGames: Array<any>;
+  calendarGamesKeys: Array<string>;
   rounds: any; // rounds is a map of arrays
 
   constructor(private app: App, public navCtrl: NavController, public navParams: NavParams, public view: ViewController, public backend: BackendProvider) {
      this.event = {};
     this.groupIds=[];
     this.groups=[];
+    this.showTopic('games');
         
     this.event = this.backend.getCurrentEvent();
+    
+    // trasnform array in map
+    this.teams = [];
+    for (let t of this.event.teams) {
+    this.teams[t.id]=t;
+    }
 
     for (let g of this.event.groups) {
        this.groups[g.id]=g;
        this.groupIds.push(g.id);
     }
-    this.groupId = this.event.games[0].groupId;
-    this.buildBracket(this.groupId);
-   // this.group = this.groups[this.groupId].name;
+
+    this.setGroup(0);
+    
      
     this.current = undefined;
 
     
 
   }
+
+ 
 
   buildBracket(group) {
     // build the round for brackets
@@ -69,6 +82,25 @@ export class EventPage {
     }
     }
   }
+
+    buildCalendarGames(group) {
+    // build the calendar view of the games
+    this.calendarGames=[];
+    this.calendarGamesKeys=[];
+
+    for ( let game of this.event.games) {
+      if( game.groupId == this.groupId) {
+        var date = game.date.toDateString();
+        if (this.calendarGames[date]==undefined) this.calendarGames[date]=[];
+        this.calendarGames[date].push(game);
+       
+      }
+    }
+    this.calendarGamesKeys=Object.keys(this.calendarGames);
+
+    
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEventPage');
@@ -101,13 +133,21 @@ export class EventPage {
   nextGroup() {
     var index = this.groupIds.indexOf(this.groupId);
     index = (index+1)%this.groupIds.length;
-    this.groupId=this.groupIds[index];
+    this.setGroup(index);
+  }
+  setGroup(groupId) {
+    this.groupId=this.groupIds[groupId];
+    this.groupType=this.groups[this.groupId].type;
     this.buildBracket(this.groupId);
-    //this.group = this.groups[this.groupId].name;
+    this.buildCalendarGames(this.groupId);
   }
   goHome() {
      var ctrl = this.app.getRootNavs()[0];
       ctrl.setRoot(TabsPage);
+  }
+
+  showTopic(topic) {
+      this.show=topic;
   }
 
  
