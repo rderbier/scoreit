@@ -27,6 +27,7 @@ export class EventPage {
   groups: Array<any>;
  // group: string;
   groupId: string;
+   groupType: string;
   groupIds: Array<string>;
   teams: Array<any>;
   calendarGames: Array<any>;
