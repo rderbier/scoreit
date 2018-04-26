@@ -17,20 +17,20 @@ export class BackendProvider {
     this.event = null;
 
   }
-  
+
   getCurrentEvent() {
     return this.event;
 
   }
   getEvent(eventCode){
- 
+
     if (this.event) { // local cache
       return Promise.resolve(this.event);
     }
- 
+
     /*
     return new Promise(resolve => {
- 
+
       this.http.get('http://scorepro.herokuapp.com/api/event/'+eventCode)
         .subscribe(data => {
           this.event = data;
@@ -45,67 +45,67 @@ export class BackendProvider {
        teams : [
         {
     "id": "T1",
-    "name": "Leo In Lobortis Corp."
+    "name": "Houston Rockets"
   },
   {
     "id": "T2",
-    "name": "Donec Nibh Quisque Industries"
+    "name": "Minesotta Timberwolves"
   },
   {
     "id": "T3",
-    "name": "Feugiat Lorem Limited"
+    "name": "Oklahoma City Thunder"
   },
   {
     "id": "T4",
-    "name": "Nec Associates"
+    "name": "Utah Jazz"
   },
   {
     "id": "T5",
-    "name": "Mollis Nec Cursus Associates"
+    "name": "Portland Trailblazzers"
   },
   {
     "id": "T6",
-    "name": "Vitae Erat Vivamus Inc."
+    "name": "New Orleans Pelicans"
   },
   {
     "id": "T7",
-    "name": "Magna Et Ipsum Company"
+    "name": "Golden State Warriors"
   },
   {
     "id": "T8",
-    "name": "Placerat Eget LLC"
+    "name": "San Antonio Spurs"
   },
   {
     "id": "T9",
-    "name": "Vestibulum Mauris Magna Associates"
+    "name": "Toronto Raptors"
   },
   {
     "id": "T10",
-    "name": "Sapien Gravida Associates"
+    "name": "Washington Wizards"
   },
   {
     "id": "T11",
-    "name": "Donec PC"
+    "name": "Cleveland Cavaliers"
   },
   {
     "id": "T12",
-    "name": "Nostra Per Inceptos Corp."
+    "name": "Indiana Pacers"
   },
   {
     "id": "T13",
-    "name": "Neque PC"
+    "name": "Philadelphia Sixers"
   },
   {
     "id": "T14",
-    "name": "Ornare Lectus Ante Corporation"
+    "name": "Miami Heat"
   },
   {
     "id": "T15",
-    "name": "Sed Hendrerit Limited"
+    "name": "Boston Celics"
   },
   {
     "id": "T16",
-    "name": "Egestas Aliquam Nec Institute"
+    "name": "Milwaukee Bucks"
   },
   {
     "id": "T17",
@@ -449,23 +449,30 @@ export class BackendProvider {
        groups :[
        {
           id: "A",
-          name: "GroupA",
+          name: "West",
           type: "bracket"
        },
        {
           id: "B",
-          name: "GroupB",
+          name: "Est",
           type: "bracket"
        },
        {
           id: "C",
-          name: "GroupC",
+          name: "Poupoule",
           type: "pool",
           rankData:["pt","tt"],
           ranks:[
-              { "rank": 1, "team": "T2", data: { pt: "12", tt:"25" }},
-              { "rank": 2, "team": "T25", data: { pt: "10", tt:"25" }},
-              { "rank": 3, "team": "T5", data: { pt: "8", tt:"5" }}
+              { "rank": 1, "team": "T1", data: { pt: "12", tt:"28" }},
+              { "rank": 2, "team": "T3", data: { pt: "10", tt:"20" }},
+              { "rank": 3, "team": "T2", data: { pt: "8", tt:"15" }},
+              { "rank": 3, "team": "T4", data: { pt: "8", tt:"7" }},
+
+              { "rank": 5, "team": "T7", data: { pt: "1", tt:"5" }},
+              { "rank": 5, "team": "T6", data: { pt: "1", tt:"4" }},
+              { "rank": 5, "team": "T5", data: { pt: "1", tt:"-1" }},
+              { "rank": 8, "team": "T8", data: { pt: "0", tt:"-5" }}
+
           ]
        }
        ],
@@ -473,74 +480,275 @@ export class BackendProvider {
          {
          date: "2018-04-05T13:00:00.000Z",
          round: 1,
-         roundIndex: 2,
+         roundIndex: 1,
          groupId: "A",
          teams : [
-          { id: "T40", score:"35", isWinner: true},
-          { id: "T41", score:"12" }
+          { id: "T1", score:"4", isWinner: true},
+          { id: "T2", score:"1" }
           ],
-   
-         isFinal: true,
+
+        isFinal: true,
          },
          {
          date: "2018-04-05T13:00:00.000Z",
          round: 1,
+         roundIndex: 2,
+         groupId: "A",
+         teams : [
+          { id: "T3", score:"2"},
+          { id: "T4", score:"3" , isWinner: true}
+          ],
+          isFinal: true,
+          },
+
+          {
+          date: "2018-04-05T13:00:00.000Z",
+          round: 1,
+          roundIndex: 3,
+          groupId: "A",
+          teams : [
+           { id: "T5", score:"0"},
+           { id: "T6", score:"4" , isWinner: true}
+           ],
+
+         isFinal: true,
+           },
+           {
+           date: "2018-04-05T13:00:00.000Z",
+           round: 1,
+           roundIndex: 4,
+           groupId: "A",
+           teams : [
+            { id: "T7", score:"4",isWinner: true},
+            { id: "T8", score:"1"  }
+            ],
+
+         isFinal: true,
+         },
+
+         {
+         date: "2018-04-05T13:00:00.000Z",
+         round: 2,
          roundIndex: 1,
          groupId: "A",
          teams : [
-          { id: "T1", score:"5", isWinner: true},
-          { id: "T2", score:"0" }
+          { id: "T1", score:"0"},
+          { id: "T4", score:"4" , isWinner: true}
           ],
-   
+
+        isFinal: false,
+          },
+
+          {
+          date: "2018-04-05T13:00:00.000Z",
+          round: 2,
+          roundIndex: 2,
+          groupId: "A",
+          teams : [
+           { id: "T6", score:"2"},
+           { id: "T7", score:"4" , isWinner: true}
+           ],
+
          isFinal: true,
-         },
+           },
+
+          {
+           date: "2018-04-05T13:00:00.000Z",
+           round: 3,
+           roundIndex: 1,
+           groupId: "A",
+           location: {name:" Oakland"},
+           teams : [
+            { id: "T4"},
+            { id: "T7"}
+            ],
+
+          isFinal: false,
+            },
          {
          date: "2018-04-07T13:00:00.000Z",
          round: 1,
          roundIndex: 1,
          groupId: "B",
-         location: {name:" 1312 eddy st"},
          teams : [
-          { id: "T4"},
-          { id: "T5"}
+          { id: "T9", score:"4", isWinner: true},
+          { id: "T10", score:"2"}
           ]
          },
          {
          date: "2018-04-06T13:00:00.000Z",
          round: 1,
-         roundIndex: 3,
-         groupId: "A",
+         roundIndex: 2,
+         groupId: "B",
          teams : [
-          { id: "T20", score:"35", isWinner: true},
-          { id: "T30", score:"12" }
+          { id: "T11", score:"4", isWinner: true},
+          { id: "T12", score:"1" }
           ],
-   
+
          isFinal: true,
          },
          {
          date: "2018-04-07T13:00:00.000Z",
          round: 1,
-         roundIndex: 4,
-         groupId: "A",
+         roundIndex: 3,
+         groupId: "B",
          teams : [
-          { id: "T3", score:"5", isWinner: true},
-          { id: "T6", score:"2" }
+          { id: "T13", score:"5", isWinner: true},
+          { id: "T14", score:"2" }
           ],
-   
+
+         isFinal: true,
+         },
+
+         {
+         date: "2018-04-07T13:00:00.000Z",
+         round: 1,
+         roundIndex: 4,
+         groupId: "B",
+         teams : [
+          { id: "T15", score:"2"},
+          { id: "T16", score:"6" , isWinner: true}
+          ],
+
+         isFinal: true,
+         },
+
+
+         {
+         date: "2018-04-28T13:00:00.000Z",
+         round: 2,
+         roundIndex: 1,
+         location: {name:"chez Raph"},
+         groupId: "B",
+         teams : [
+          { id: "T9"},
+          { id: "T11" }
+          ],
+
          isFinal: true,
          },
          {
-         date: "2018-04-07T13:00:00.000Z",
+         date: "2018-04-29T13:00:00.000Z",
          round: 2,
-         roundIndex: 1,
-         groupId: "A",
+         roundIndex: 2,
+         location: {name:"chez Matth"},
+         groupId: "B",
          teams : [
-          { id: "T1", score:"2"},
-          { id: "T40", score:"2" }
+          { id: "T13"},
+          { id: "T16" }
           ],
-   
-         isFinal: true,
+
+
          },
+
+         {
+         date: "2018-04-30T13:00:00.000Z",
+         round: 3,
+         roundIndex: 1,
+         location: {name:"chez Jules"},
+         groupId: "B",
+         teams : [
+          { id: "T9"},
+          { id: "T16" }
+          ],
+
+
+        },
+        {
+        date: "2018-04-29T13:00:00.000Z",
+
+        location: {name:"terrain 1"},
+        groupId: "C",
+        teams : [
+         { id: "T1", score:"64" , isWinner: true},
+         { id: "T2", score:"32" }
+         ],
+         isFinal: true,
+
+
+        },
+        {
+        date: "2018-04-29T13:10:00.000Z",
+
+        location: {name:"terrain 2"},
+        groupId: "C",
+        teams : [
+         { id: "T3", score:"0" },
+         { id: "T4" , score:"93" , isWinner: true}
+         ],
+isFinal: true,
+
+        },
+        {
+        date: "2018-04-29T13:00:00.000Z",
+
+        location: {name:"terrain 3"},
+        groupId: "C",
+        teams : [
+         { id: "T5", score:"16" },
+         { id: "T6", score:"16"  }
+         ],
+isFinal: true,
+
+        },
+        {
+        date: "2018-04-29T13:10:00.000Z",
+
+        location: {name:"terrain 4"},
+        groupId: "C",
+        teams : [
+         { id: "T7", score:"36" , isWinner: true},
+         { id: "T8", score:"5" }
+         ],
+
+        },
+        {
+        date: "2018-04-29T13:50:00.000Z",
+
+        location: {name:"terrain 3"},
+        groupId: "C",
+        teams : [
+         { id: "T1"},
+         { id: "T3" }
+         ],
+
+
+        },
+        {
+        date: "2018-04-29T14:00:00.000Z",
+
+        location: {name:"terrain 2"},
+        groupId: "C",
+        teams : [
+         { id: "T2"},
+         { id: "T4" }
+         ],
+
+
+        },
+        {
+        date: "2018-04-29T13:00:00.000Z",
+        location: {name:"terrain 1"},
+        groupId: "C",
+        teams : [
+         { id: "T5"},
+         { id: "T7" }
+         ],
+
+
+        },
+        {
+        date: "2018-04-30T13:00:00.000Z",
+        location: {name:"terrain 3"},
+        groupId: "C",
+        teams : [
+         { id: "T5"},
+         { id: "T8" }
+         ],
+
+
+        }
+
        ]};
 
        // set real date objects
