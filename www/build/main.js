@@ -103,11 +103,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the AddEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+* Generated class for the AddEventPage page.
+*
+* See https://ionicframework.com/docs/components/#navigation for more info on
+* Ionic pages and navigation.
+*/
 var EventPage = (function () {
     function EventPage(app, navCtrl, navParams, view, backend) {
         this.app = app;
@@ -154,6 +154,7 @@ var EventPage = (function () {
                 });
             }
         }
+        this.roundIndex = 1;
     };
     EventPage.prototype.buildCalendarGames = function (group) {
         // build the calendar view of the games
@@ -212,13 +213,22 @@ var EventPage = (function () {
     EventPage.prototype.showTopic = function (topic) {
         this.show = topic;
     };
+    EventPage.prototype.swipeBracket = function (event) {
+        console.log("swipe " + event.direction);
+        if ((event.direction === 2)) {
+            this.roundIndex += 1;
+        }
+        if ((event.direction === 4) && (this.roundIndex > 1)) {
+            this.roundIndex -= 1;
+        }
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
         __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]) === "function" && _a || Object)
     ], EventPage.prototype, "content", void 0);
     EventPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n    <ion-buttons left>\n      <button ion-button icon-only large (click)="goHome()">\n        <ion-icon name="md-home"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title text-center>\n      {{event.title}}  - {{groups[groupId].name}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-rewind"></ion-icon>\n      </button>\n\n      <button ion-button icon-only (click)="nextGroup()">\n        <ion-icon name="md-fastforward"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n<div *ngIf="show==\'games\'">\n\n  <ion-list no-lines>\n\n    <div *ngFor="let d of calendarGamesKeys">\n   \n        <ion-list-header >\n          {{d}}\n        </ion-list-header>\n        <ion-item *ngFor="let m of calendarGames[d]" class="matches__list-item" (click)="scrollTo()" >\n\n          <a  class="matches__item matches__link" >\n\n            <!--span class="matches__item-col matches__label">CHA</span-->\n\n            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</span>\n\n            <span class="matches__item-col matches__status ">\n\n              <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n              <span class="matches__time" *ngIf="m.isFinal!=true" >\n\n                {{m.date.toTimeString().substr(0,5)}}\n\n              </span>\n\n\n\n            </span>\n\n            <span class="matches__item-col matches__participant matches__participant--side2">{{teams[m.teams[1].id].name}}</span>\n\n            <!--span class="matches__item-col matches__info">FT</span-->\n\n\n          </a>\n          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>\n        </ion-item>\n    \n    </div>\n\n  </ion-list>\n</div>\n\n  <div *ngIf="show==\'results\'">\n\n  \n  <div class="bracket" *ngIf="groupType==\'bracket\'">\n    <div class="round1">\n      <div *ngFor="let m of rounds[\'1\']; let i = index"  class="game-card" [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n         \n        </ion-card>\n      </div>\n\n\n\n\n    </div>\n    <div class="round2">\n\n      <div  *ngFor="let m of rounds[\'2\']; let i = index" >\n        \n        <ion-card  class="scorecard" >\n\n          \n          <div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> \n          <div class="scorecard_item matches__status ">\n          <span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n              </span>\n            </div>\n   \n          <div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n          \n        </ion-card>\n      </div>\n    </div>\n\n  </div>\n  <div class="pool" *ngIf="groupType==\'pool\'">\n    <div class="bar bar-subheader bar-positive">\n  <h2 class="title">pool</h2>\n  </div>\n  <ion-list no-lines >\n\n   \n      \n        \n        <ion-item *ngFor="let r of groups[groupId].ranks">\n          {{r.rank}}-{{r.team}}\n        </ion-item>\n      </ion-list>\n</div>\n  </div>\n\n\n</ion-content>\n\n\n<ion-footer>\n  <ion-navbar color="lightdark">\n    <ion-buttons >\n      <button start ion-button icon-only large (click)="showTopic(\'games\')">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n      <button center ion-button icon-only large (click)="showTopic(\'results\')">\n        <ion-icon name="md-podium"></ion-icon>\n      </button>\n      <button end ion-button icon-only large (click)="showTopic(\'info\')">\n        <ion-icon name="md-information-circle"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
+            selector: 'page-event',template:/*ion-inline-start:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/'<ion-header>\n	<ion-navbar color="lightdark">\n		<ion-buttons left>\n			<button ion-button icon-only large (click)="goHome()">\n				<ion-icon name="md-home"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title text-center>\n			{{event.title}}\n		</ion-title>\n		<ion-buttons end>\n\n\n\n		</ion-buttons>\n\n\n	</ion-navbar>\n	<ion-navbar color="lightdark">\n		<ion-buttons left>\n			<button ion-button icon-only (click)="nextGroup()">\n				<ion-icon name="md-rewind"></ion-icon>\n			</button>\n		</ion-buttons>\n		<ion-title text-center>\n			{{groups[groupId].name}}\n		</ion-title>\n		<ion-buttons end>\n\n\n			<button ion-button icon-only (click)="nextGroup()">\n				<ion-icon name="md-fastforward"></ion-icon>\n			</button>\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n<ion-content>\n	<div *ngIf="show==\'games\'">\n\n		<ion-list no-lines>\n\n			<div *ngFor="let d of calendarGamesKeys">\n\n				<ion-list-header >\n					{{d}}\n				</ion-list-header>\n				<ion-item *ngFor="let m of calendarGames[d]" class="matches__list-item" (click)="scrollTo()" >\n\n					<a  class="matches__item matches__link" >\n\n						<!--span class="matches__item-col matches__label">CHA</span-->\n\n						<span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</span>\n\n						<span class="matches__item-col matches__status ">\n\n							<span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n								<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n								<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n							</span>\n							<span class="matches__time" *ngIf="m.isFinal!=true" >\n\n								{{m.date.toTimeString().substr(0,5)}}\n\n							</span>\n\n\n\n						</span>\n\n						<span class="matches__item-col matches__participant matches__participant--side2">{{teams[m.teams[1].id].name}}</span>\n\n						<!--span class="matches__item-col matches__info">FT</span-->\n\n\n					</a>\n					<p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>\n				</ion-item>\n\n			</div>\n\n		</ion-list>\n	</div>\n\n	<div *ngIf="show==\'results\'">\n\n\n		<ion-slides class="bracket" *ngIf="groupType==\'bracket\'" (swipe)="swipeBracket($event)">\n			\n\n			<ion-slide class="bracket">\n				<div class="round1">\n					<ion-list-header >\n						Round {{roundIndex}}\n					</ion-list-header>\n					<div *ngFor="let m of rounds[roundIndex]; let i = index"  class="game-card" [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n						<ion-card  class="scorecard" >\n\n\n							<div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div>\n							<div class="scorecard_item matches__status ">\n								<span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n									<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n									<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n								</span>\n							</div>\n							<div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n\n						</ion-card>\n					</div>\n				</div>\n				<div class="round2">\n					<ion-list-header >\n						Round {{roundIndex+1}}\n					</ion-list-header>\n					<div  *ngFor="let m of rounds[roundIndex+1]; let i = index" class="game-card"  [ngClass]="{\'upper\': i%2===0, \'lower\': i%2===1 }">\n\n						<ion-card  class="scorecard" >\n\n\n							<div class="scorecard_item" [ngClass]="{\'winner\': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div>\n							<div class="scorecard_item matches__status ">\n								<span class="matches__teamscores" *ngIf="m.isFinal==true" >\n\n									<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>\n\n									<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>\n\n								</span>\n							</div>\n\n							<div class="scorecard_item " [ngClass]="{\'winner\': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>\n\n						</ion-card>\n					</div>\n				</div>\n			</ion-slide>\n\n\n		</ion-slides>\n		<div class="pool" *ngIf="groupType==\'pool\'">\n			<div class="bar bar-subheader bar-positive">\n				xyz\n			</div>\n			<ion-grid>\n				<ion-row>\n					<ion-col>rank</ion-col>\n\n\n\n\n					<ion-col col-9>team</ion-col>\n					<ion-col *ngFor="let c of groups[groupId].rankData">{{c}}</ion-col>\n				</ion-row>\n\n				<ion-row *ngFor="let r of groups[groupId].ranks">\n					<ion-col>{{r.rank}}</ion-col>\n					<ion-col col-9>{{teams[r.team].name}}</ion-col>\n					-\n					<ion-col *ngFor="let c of groups[groupId].rankData">{{r.data[c]}}</ion-col>\n				</ion-row>\n			</ion-grid>\n		</div>\n	</div>\n\n\n</ion-content>\n\n\n<ion-footer>\n	<ion-navbar color="lightdark">\n		<ion-buttons >\n			<button start ion-button icon-only large (click)="showTopic(\'games\')">\n				<ion-icon name="md-calendar"></ion-icon>\n			</button>\n			<button center ion-button icon-only large (click)="showTopic(\'results\')">\n				<ion-icon name="md-podium"></ion-icon>\n			</button>\n			<button end ion-button icon-only large (click)="showTopic(\'info\')">\n				<ion-icon name="md-information-circle"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/raph/work/perso/schav/scoreit/src/pages/event/event.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_backend_backend__["a" /* BackendProvider */]) === "function" && _f || Object])
     ], EventPage);
@@ -273,7 +283,7 @@ var BackendProvider = (function () {
         }
         /*
         return new Promise(resolve => {
-     
+    
           this.http.get('http://scorepro.herokuapp.com/api/event/'+eventCode)
             .subscribe(data => {
               this.event = data;
@@ -287,67 +297,67 @@ var BackendProvider = (function () {
                 teams: [
                     {
                         "id": "T1",
-                        "name": "Leo In Lobortis Corp."
+                        "name": "Houston Rockets"
                     },
                     {
                         "id": "T2",
-                        "name": "Donec Nibh Quisque Industries"
+                        "name": "Minesotta Timberwolves"
                     },
                     {
                         "id": "T3",
-                        "name": "Feugiat Lorem Limited"
+                        "name": "Oklahoma City Thunder"
                     },
                     {
                         "id": "T4",
-                        "name": "Nec Associates"
+                        "name": "Utah Jazz"
                     },
                     {
                         "id": "T5",
-                        "name": "Mollis Nec Cursus Associates"
+                        "name": "Portland Trailblazzers"
                     },
                     {
                         "id": "T6",
-                        "name": "Vitae Erat Vivamus Inc."
+                        "name": "New Orleans Pelicans"
                     },
                     {
                         "id": "T7",
-                        "name": "Magna Et Ipsum Company"
+                        "name": "Golden State Warriors"
                     },
                     {
                         "id": "T8",
-                        "name": "Placerat Eget LLC"
+                        "name": "San Antonio Spurs"
                     },
                     {
                         "id": "T9",
-                        "name": "Vestibulum Mauris Magna Associates"
+                        "name": "Toronto Raptors"
                     },
                     {
                         "id": "T10",
-                        "name": "Sapien Gravida Associates"
+                        "name": "Washington Wizards"
                     },
                     {
                         "id": "T11",
-                        "name": "Donec PC"
+                        "name": "Cleveland Cavaliers"
                     },
                     {
                         "id": "T12",
-                        "name": "Nostra Per Inceptos Corp."
+                        "name": "Indiana Pacers"
                     },
                     {
                         "id": "T13",
-                        "name": "Neque PC"
+                        "name": "Philadelphia Sixers"
                     },
                     {
                         "id": "T14",
-                        "name": "Ornare Lectus Ante Corporation"
+                        "name": "Miami Heat"
                     },
                     {
                         "id": "T15",
-                        "name": "Sed Hendrerit Limited"
+                        "name": "Boston Celics"
                     },
                     {
                         "id": "T16",
-                        "name": "Egestas Aliquam Nec Institute"
+                        "name": "Milwaukee Bucks"
                     },
                     {
                         "id": "T17",
@@ -689,23 +699,28 @@ var BackendProvider = (function () {
                 groups: [
                     {
                         id: "A",
-                        name: "GroupA",
+                        name: "West",
                         type: "bracket"
                     },
                     {
                         id: "B",
-                        name: "GroupB",
+                        name: "Est",
                         type: "bracket"
                     },
                     {
                         id: "C",
-                        name: "GroupC",
+                        name: "Poupoule",
                         type: "pool",
                         rankData: ["pt", "tt"],
                         ranks: [
-                            { "rank": 1, "team": "T2", data: { pt: "12", tt: "25" } },
-                            { "rank": 2, "team": "T25", data: { pt: "10", tt: "25" } },
-                            { "rank": 3, "team": "T5", data: { pt: "8", tt: "5" } }
+                            { "rank": 1, "team": "T1", data: { pt: "12", tt: "28" } },
+                            { "rank": 2, "team": "T3", data: { pt: "10", tt: "20" } },
+                            { "rank": 3, "team": "T2", data: { pt: "8", tt: "15" } },
+                            { "rank": 3, "team": "T4", data: { pt: "8", tt: "7" } },
+                            { "rank": 5, "team": "T7", data: { pt: "1", tt: "5" } },
+                            { "rank": 5, "team": "T6", data: { pt: "1", tt: "4" } },
+                            { "rank": 5, "team": "T5", data: { pt: "1", tt: "-1" } },
+                            { "rank": 8, "team": "T8", data: { pt: "0", tt: "-5" } }
                         ]
                     }
                 ],
@@ -713,44 +728,110 @@ var BackendProvider = (function () {
                     {
                         date: "2018-04-05T13:00:00.000Z",
                         round: 1,
-                        roundIndex: 2,
+                        roundIndex: 1,
                         groupId: "A",
                         teams: [
-                            { id: "T40", score: "35", isWinner: true },
-                            { id: "T41", score: "12" }
+                            { id: "T1", score: "4", isWinner: true },
+                            { id: "T2", score: "1" }
                         ],
                         isFinal: true,
                     },
                     {
                         date: "2018-04-05T13:00:00.000Z",
                         round: 1,
+                        roundIndex: 2,
+                        groupId: "A",
+                        teams: [
+                            { id: "T3", score: "2" },
+                            { id: "T4", score: "3", isWinner: true }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 3,
+                        groupId: "A",
+                        teams: [
+                            { id: "T5", score: "0" },
+                            { id: "T6", score: "4", isWinner: true }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 4,
+                        groupId: "A",
+                        teams: [
+                            { id: "T7", score: "4", isWinner: true },
+                            { id: "T8", score: "1" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 2,
                         roundIndex: 1,
                         groupId: "A",
                         teams: [
-                            { id: "T1", score: "5", isWinner: true },
-                            { id: "T2", score: "0" }
+                            { id: "T1", score: "0" },
+                            { id: "T4", score: "4", isWinner: true }
+                        ],
+                        isFinal: false,
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 2,
+                        roundIndex: 2,
+                        groupId: "A",
+                        teams: [
+                            { id: "T6", score: "2" },
+                            { id: "T7", score: "4", isWinner: true }
                         ],
                         isFinal: true,
+                    },
+                    {
+                        date: "2018-04-05T13:00:00.000Z",
+                        round: 3,
+                        roundIndex: 1,
+                        groupId: "A",
+                        location: { name: " Oakland" },
+                        teams: [
+                            { id: "T4" },
+                            { id: "T7" }
+                        ],
+                        isFinal: false,
                     },
                     {
                         date: "2018-04-07T13:00:00.000Z",
                         round: 1,
                         roundIndex: 1,
                         groupId: "B",
-                        location: { name: " 1312 eddy st" },
                         teams: [
-                            { id: "T4" },
-                            { id: "T5" }
+                            { id: "T9", score: "4", isWinner: true },
+                            { id: "T10", score: "2" }
                         ]
                     },
                     {
                         date: "2018-04-06T13:00:00.000Z",
                         round: 1,
-                        roundIndex: 3,
-                        groupId: "A",
+                        roundIndex: 2,
+                        groupId: "B",
                         teams: [
-                            { id: "T20", score: "35", isWinner: true },
-                            { id: "T30", score: "12" }
+                            { id: "T11", score: "4", isWinner: true },
+                            { id: "T12", score: "1" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-07T13:00:00.000Z",
+                        round: 1,
+                        roundIndex: 3,
+                        groupId: "B",
+                        teams: [
+                            { id: "T13", score: "5", isWinner: true },
+                            { id: "T14", score: "2" }
                         ],
                         isFinal: true,
                     },
@@ -758,24 +839,122 @@ var BackendProvider = (function () {
                         date: "2018-04-07T13:00:00.000Z",
                         round: 1,
                         roundIndex: 4,
-                        groupId: "A",
+                        groupId: "B",
                         teams: [
-                            { id: "T3", score: "5", isWinner: true },
-                            { id: "T6", score: "2" }
+                            { id: "T15", score: "2" },
+                            { id: "T16", score: "6", isWinner: true }
                         ],
                         isFinal: true,
                     },
                     {
-                        date: "2018-04-07T13:00:00.000Z",
+                        date: "2018-04-28T13:00:00.000Z",
                         round: 2,
                         roundIndex: 1,
-                        groupId: "A",
+                        location: { name: "chez Raph" },
+                        groupId: "B",
                         teams: [
-                            { id: "T1", score: "2" },
-                            { id: "T40", score: "2" }
+                            { id: "T9" },
+                            { id: "T11" }
                         ],
                         isFinal: true,
                     },
+                    {
+                        date: "2018-04-29T13:00:00.000Z",
+                        round: 2,
+                        roundIndex: 2,
+                        location: { name: "chez Matth" },
+                        groupId: "B",
+                        teams: [
+                            { id: "T13" },
+                            { id: "T16" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-30T13:00:00.000Z",
+                        round: 3,
+                        roundIndex: 1,
+                        location: { name: "chez Jules" },
+                        groupId: "B",
+                        teams: [
+                            { id: "T9" },
+                            { id: "T16" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-29T13:00:00.000Z",
+                        location: { name: "terrain 1" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T1", score: "64", isWinner: true },
+                            { id: "T2", score: "32" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-29T13:10:00.000Z",
+                        location: { name: "terrain 2" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T3", score: "0" },
+                            { id: "T4", score: "93", isWinner: true }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-29T13:00:00.000Z",
+                        location: { name: "terrain 3" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T5", score: "16" },
+                            { id: "T6", score: "16" }
+                        ],
+                        isFinal: true,
+                    },
+                    {
+                        date: "2018-04-29T13:10:00.000Z",
+                        location: { name: "terrain 4" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T7", score: "36", isWinner: true },
+                            { id: "T8", score: "5" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-29T13:50:00.000Z",
+                        location: { name: "terrain 3" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T1" },
+                            { id: "T3" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-29T14:00:00.000Z",
+                        location: { name: "terrain 2" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T2" },
+                            { id: "T4" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-29T13:00:00.000Z",
+                        location: { name: "terrain 1" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T5" },
+                            { id: "T7" }
+                        ],
+                    },
+                    {
+                        date: "2018-04-30T13:00:00.000Z",
+                        location: { name: "terrain 3" },
+                        groupId: "C",
+                        teams: [
+                            { id: "T5" },
+                            { id: "T8" }
+                        ],
+                    }
                 ] };
             // set real date objects
             for (var _i = 0, _a = _this.event.games; _i < _a.length; _i++) {

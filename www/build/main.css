@@ -27978,10 +27978,10 @@ ion-navbar.toolbar {
 }
 
 page-event {
-  /* ------- 
-#items on left and right grow at 100% and text is not wrap with ellipsis
-#the center is match_status 
-*/
+  /* -------
+  #items on left and right grow at 100% and text is not wrap with ellipsis
+  #the center is match_status
+  */
 }
 
 page-event *,
@@ -28016,20 +28016,16 @@ page-event .game-card {
   margin-top: 50px;
 }
 
-page-event .game-card:first-child {
+page-event .game-card:first-of-type {
   margin-top: 0px;
-}
-
-page-event .round2 {
-  padding-top: 65px;
 }
 
 page-event .round2 .game-card {
-  margin-top: 50px;
+  margin-top: 180px;
 }
 
-page-event .round2 .game-card:first-child {
-  margin-top: 0px;
+page-event .round2 .game-card:first-of-type {
+  margin-top: 65px;
 }
 
 page-event .round1 {
@@ -28231,6 +28227,13 @@ page-event .bracket {
   display: flex;
 }
 
+page-event .bracket .slide-zoom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 page-event .bracket .scorecard {
   display: -webkit-box;
   display: -webkit-flex;
@@ -28348,6 +28351,10 @@ page-event .game-top + li {
 
 page-event .round {
   width: 50%;
+}
+
+page-event ion-row:nth-of-type(even) {
+  background: #eaeaea;
 }
 
 page-result .bracket, page-result ul {

@@ -1,163 +1,193 @@
 <ion-header>
 	<ion-navbar color="lightdark">
-    <ion-buttons left>
-      <button ion-button icon-only large (click)="goHome()">
-        <ion-icon name="md-home"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title text-center>
-      {{event.title}}  - {{groups[groupId].name}}
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="nextGroup()">
-        <ion-icon name="md-rewind"></ion-icon>
-      </button>
+		<ion-buttons left>
+			<button ion-button icon-only large (click)="goHome()">
+				<ion-icon name="md-home"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title text-center>
+			{{event.title}}
+		</ion-title>
+		<ion-buttons end>
 
-      <button ion-button icon-only (click)="nextGroup()">
-        <ion-icon name="md-fastforward"></ion-icon>
-      </button>
-    </ion-buttons>
 
-  </ion-navbar>
+
+		</ion-buttons>
+
+
+	</ion-navbar>
+	<ion-navbar color="lightdark">
+		<ion-buttons left>
+			<button ion-button icon-only (click)="nextGroup()">
+				<ion-icon name="md-rewind"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title text-center>
+			{{groups[groupId].name}}
+		</ion-title>
+		<ion-buttons end>
+
+
+			<button ion-button icon-only (click)="nextGroup()">
+				<ion-icon name="md-fastforward"></ion-icon>
+			</button>
+		</ion-buttons>
+
+	</ion-navbar>
 
 </ion-header>
 
 <ion-content>
-<div *ngIf="show=='games'">
+	<div *ngIf="show=='games'">
 
-  <ion-list no-lines>
+		<ion-list no-lines>
 
-    <div *ngFor="let d of calendarGamesKeys">
-   
-        <ion-list-header >
-          {{d}}
-        </ion-list-header>
-        <ion-item *ngFor="let m of calendarGames[d]" class="matches__list-item" (click)="scrollTo()" >
+			<div *ngFor="let d of calendarGamesKeys">
 
-          <a  class="matches__item matches__link" >
+				<ion-list-header >
+					{{d}}
+				</ion-list-header>
+				<ion-item *ngFor="let m of calendarGames[d]" class="matches__list-item" (click)="scrollTo()" >
 
-            <!--span class="matches__item-col matches__label">CHA</span-->
+					<a  class="matches__item matches__link" >
 
-            <span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</span>
+						<!--span class="matches__item-col matches__label">CHA</span-->
 
-            <span class="matches__item-col matches__status ">
+						<span class="matches__item-col matches__participant matches__participant--side1" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</span>
 
-              <span class="matches__teamscores" *ngIf="m.isFinal==true" >
+						<span class="matches__item-col matches__status ">
 
-                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+							<span class="matches__teamscores" *ngIf="m.isFinal==true" >
 
-                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+								<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
 
-              </span>
-              <span class="matches__time" *ngIf="m.isFinal!=true" >
+								<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
 
-                {{m.date.toTimeString().substr(0,5)}}
+							</span>
+							<span class="matches__time" *ngIf="m.isFinal!=true" >
 
-              </span>
+								{{m.date.toTimeString().substr(0,5)}}
 
-
-
-            </span>
-
-            <span class="matches__item-col matches__participant matches__participant--side2">{{teams[m.teams[1].id].name}}</span>
-
-            <!--span class="matches__item-col matches__info">FT</span-->
-
-
-          </a>
-          <p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>
-        </ion-item>
-    
-    </div>
-
-  </ion-list>
-</div>
-
-  <div *ngIf="show=='results'">
-
-  
-  <div class="bracket" *ngIf="groupType=='bracket'">
-    <div class="round1">
-      <div *ngFor="let m of rounds['1']; let i = index"  class="game-card" [ngClass]="{'upper': i%2===0, 'lower': i%2===1 }">
-        <ion-card  class="scorecard" >
-
-          
-          <div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> 
-          <div class="scorecard_item matches__status ">
-          <span class="matches__teamscores" *ngIf="m.isFinal==true" >
-
-                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
-
-                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
-
-              </span>
-            </div>
-          <div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>
-         
-        </ion-card>
-      </div>
+							</span>
 
 
 
+						</span>
 
-    </div>
-    <div class="round2">
+						<span class="matches__item-col matches__participant matches__participant--side2">{{teams[m.teams[1].id].name}}</span>
 
-      <div  *ngFor="let m of rounds['2']; let i = index" >
-        
-        <ion-card  class="scorecard" >
+						<!--span class="matches__item-col matches__info">FT</span-->
 
-          
-          <div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div> 
-          <div class="scorecard_item matches__status ">
-          <span class="matches__teamscores" *ngIf="m.isFinal==true" >
 
-                <span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+					</a>
+					<p class="matches_location" *ngIf="(m.isFinal!=true) && (m.location!=undefined)">{{m.location.name}}</p>
+				</ion-item>
 
-                <span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+			</div>
 
-              </span>
-            </div>
-   
-          <div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>
-          
-        </ion-card>
-      </div>
-    </div>
+		</ion-list>
+	</div>
 
-  </div>
-  <div class="pool" *ngIf="groupType=='pool'">
-    <div class="bar bar-subheader bar-positive">
-  <h2 class="title">pool</h2>
-  </div>
-  <ion-list no-lines >
+	<div *ngIf="show=='results'">
 
-   
-      
-        
-        <ion-item *ngFor="let r of groups[groupId].ranks">
-          {{r.rank}}-{{r.team}}
-        </ion-item>
-      </ion-list>
-</div>
-  </div>
+
+		<ion-slides class="bracket" *ngIf="groupType=='bracket'" (swipe)="swipeBracket($event)">
+			
+
+			<ion-slide class="bracket">
+				<div class="round1">
+					<ion-list-header >
+						Round {{roundIndex}}
+					</ion-list-header>
+					<div *ngFor="let m of rounds[roundIndex]; let i = index"  class="game-card" [ngClass]="{'upper': i%2===0, 'lower': i%2===1 }">
+						<ion-card  class="scorecard" >
+
+
+							<div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div>
+							<div class="scorecard_item matches__status ">
+								<span class="matches__teamscores" *ngIf="m.isFinal==true" >
+
+									<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+
+									<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+
+								</span>
+							</div>
+							<div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>
+
+						</ion-card>
+					</div>
+				</div>
+				<div class="round2">
+					<ion-list-header >
+						Round {{roundIndex+1}}
+					</ion-list-header>
+					<div  *ngFor="let m of rounds[roundIndex+1]; let i = index" class="game-card"  [ngClass]="{'upper': i%2===0, 'lower': i%2===1 }">
+
+						<ion-card  class="scorecard" >
+
+
+							<div class="scorecard_item" [ngClass]="{'winner': m.teams[0].isWinner===true }">{{teams[m.teams[0].id].name}}</div>
+							<div class="scorecard_item matches__status ">
+								<span class="matches__teamscores" *ngIf="m.isFinal==true" >
+
+									<span class="matches__teamscores-side left">{{m.teams[0].score}}</span>
+
+									<span class="matches__teamscores-side right">{{m.teams[1].score}}</span>
+
+								</span>
+							</div>
+
+							<div class="scorecard_item " [ngClass]="{'winner': m.teams[1].isWinner===true }">{{teams[m.teams[1].id].name}} </div>
+
+						</ion-card>
+					</div>
+				</div>
+			</ion-slide>
+
+
+		</ion-slides>
+		<div class="pool" *ngIf="groupType=='pool'">
+			<div class="bar bar-subheader bar-positive">
+				xyz
+			</div>
+			<ion-grid>
+				<ion-row>
+					<ion-col>rank</ion-col>
+
+
+
+
+					<ion-col col-9>team</ion-col>
+					<ion-col *ngFor="let c of groups[groupId].rankData">{{c}}</ion-col>
+				</ion-row>
+
+				<ion-row *ngFor="let r of groups[groupId].ranks">
+					<ion-col>{{r.rank}}</ion-col>
+					<ion-col col-9>{{teams[r.team].name}}</ion-col>
+					-
+					<ion-col *ngFor="let c of groups[groupId].rankData">{{r.data[c]}}</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+	</div>
 
 
 </ion-content>
 
 
 <ion-footer>
-  <ion-navbar color="lightdark">
-    <ion-buttons >
-      <button start ion-button icon-only large (click)="showTopic('games')">
-        <ion-icon name="md-calendar"></ion-icon>
-      </button>
-      <button center ion-button icon-only large (click)="showTopic('results')">
-        <ion-icon name="md-podium"></ion-icon>
-      </button>
-      <button end ion-button icon-only large (click)="showTopic('info')">
-        <ion-icon name="md-information-circle"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+	<ion-navbar color="lightdark">
+		<ion-buttons >
+			<button start ion-button icon-only large (click)="showTopic('games')">
+				<ion-icon name="md-calendar"></ion-icon>
+			</button>
+			<button center ion-button icon-only large (click)="showTopic('results')">
+				<ion-icon name="md-podium"></ion-icon>
+			</button>
+			<button end ion-button icon-only large (click)="showTopic('info')">
+				<ion-icon name="md-information-circle"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
 </ion-footer>
