@@ -92,7 +92,7 @@
 
 
 		<ion-slides class="bracket" *ngIf="groupType=='bracket'" (swipe)="swipeBracket($event)">
-			
+
 
 			<ion-slide class="bracket">
 				<div class="round1">
@@ -148,12 +148,10 @@
 
 		</ion-slides>
 		<div class="pool" *ngIf="groupType=='pool'">
-			<div class="bar bar-subheader bar-positive">
-				xyz
-			</div>
+
 			<ion-grid>
-				<ion-row>
-					<ion-col>rank</ion-col>
+				<ion-row class="header">
+					<ion-col>#</ion-col>
 
 
 
